@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Contact from './components/Contact';
 
 
 function App() {
   return (
     <div className="App">
       <div className="App">
- <h1>Hello World!</h1>
+<Contact/>
       </div>
     </div>
   );
