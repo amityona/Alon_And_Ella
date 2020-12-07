@@ -5,9 +5,9 @@
 
 [Activist](https://xd.adobe.com/view/8be39e09-3d45-4191-b6ab-080fb0993c34-deb0/)
 
-[Person in need](https://xd.adobe.com/view/0b386651-a1e8-4a5c-8f95-acda40dffd41-5e6b/)
+[Person in need](https://xd.adobe.com/view/03ce79f6-b907-4c3e-8f46-3b9955ba0c92-569d/)
 
-[Manager](https://xd.adobe.com/view/03ce79f6-b907-4c3e-8f46-3b9955ba0c92-569d/)
+[Manager](https://xd.adobe.com/view/03a240a0-a806-48eb-88ab-a69fedc1b849-56f1/)
 
 # Getting Started with Create React App
 
