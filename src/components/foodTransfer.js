@@ -1,9 +1,8 @@
-import {React, Component } from 'react';
-import { Alert, Text, TouchableOpacity, TextInput, View, StyleSheet } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { Component } from 'react';
+import { Alert, Button, Text, TouchableOpacity, TextInput, View, StyleSheet } from 'react';
 
 
-export default class HelperList extends Component {
+export default class foodTransfer extends Component {
 
     state = {
       email: '',
@@ -12,47 +11,34 @@ export default class HelperList extends Component {
   
   
   onLogin() {
-    const { email, password } = this.state;
-
-    Alert.alert('Credentials', `email: ${email} + password: ${password}`);
+    
   }
 
   render() {
     return ( 
+      
       <View style={styles.container}>
-      <Text style={styles.titleText}>לתת עזרה</Text>
-        <Text style={styles.titleText}>איך תרצו לעזור ?</Text>
+      <Text style={styles.titleText}>שינוע מזון</Text>
+        <Text style={styles.titleText}>30.10.20</Text>
                   <View style={styles.container}>
               <View style={styles.buttonContainer}>
-                <Button title="ריהוט"/>
-             
-              <View style={styles.buttonContainer}>
-                <Button title="מקום עבודה"/>
+                <Button title="נא פרט את בקשתך :"/>
+            
               </View>
-               </View>
+       <View  style={styles.container}>
+              <View style={styles.buttonContainer}>
+                <Button title="חזור"/>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Button title="מחק"/>
+              </View>
                <View style={styles.buttonContainer}>
-                <Button title="אוכל"/>
-              
-              <View style={styles.buttonContainer}>
-                <Button title="הסעה"/>
-              </View>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Button title="מוצרי חשמל"/>
-                 <View style={styles.buttonContainer}>
-                <Button title="כסף"/>
-                 
-              <View style={styles.buttonContainer}>
-                <Button title="צפו בכל הבקשות הפתחות"/>
-                 <View style={styles.buttonContainer}>
-                <Button title="הבקשות הפתוחות שלי"/>
-              </View>
-              </View>
-              </View>
+                <Button title="בוצע"/>
               </View>
             </View>
-        
-      </View>
+              </View>
+              </View>
+
      
     );
   }
@@ -99,4 +85,3 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
 });
-
