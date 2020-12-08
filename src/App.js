@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App';
 import Home from './components/Home';
 import { BrowserRouter, Route } from 'react-router-dom'
 import DonorChoose from './components/DonorChoose';
@@ -11,7 +11,6 @@ import DonorFinish from './components/DonorFinish'
 function App() {
   return (
     <BrowserRouter>
-
       <div className="App">
       <Route exact path="/">
           <Home />
