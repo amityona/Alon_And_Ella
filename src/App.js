@@ -1,25 +1,46 @@
-import React, { Component } from 'react';
-import './App.css';
-import Contact from './components/Contact';
+import logo from './logo.svg';
+import './App';
+import Home from './components/Home';
 import { BrowserRouter, Route } from 'react-router-dom'
-import HelperList from './components/HelperList';
-import foodTransfer from './components/foodTransfer';
+import DonorChoose from './components/DonorChoose';
+import NeedyFood from './components/NeedyFood'
+import DonorFile from './components/DonorFile'
+import AddressDetails from './components/AddressDetails';
+import DonorFinish from './components/DonorFinish'
+
 function App() {
   return (
-   
-    <Router>
+    <BrowserRouter>
+      <div className="App">
+      <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/donor/choose">
+          <DonorChoose />
+        </Route>
+        <Route exact path="/needy/food">
+          <NeedyFood />
+        </Route>
+        <Route exact path="/donor/file">
+          <DonorFile />
+        </Route>
+        <Route exact path="/donor/address-details">
+          <AddressDetails />
+        </Route>
+        <Route exact path="/needy/address-details">
+          <AddressDetails />
+        </Route>
+        <Route exact path="/donor/finish">
+          <DonorFinish />
+        </Route>
 
-    <div className="App">
-<Contact/>
-<Navbar />
-<Switch>
-<Route path="/" component={Contact} />
-<Route path="/foodTransfer" component={foodTransfer} />
+
+        <Route path="/foodTransfer" component={foodTransfer} />
 <Route path="/HelperList" component={HelperList} />
-</Switch>
-    </div>
-    </Router>
 
+
+      </div>
+        </BrowserRouter>
   );
 }
 

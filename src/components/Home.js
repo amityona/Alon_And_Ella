@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function Contact() {
+export default function Home() {
     
 const classes = useStyles();
     return (
