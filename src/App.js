@@ -7,8 +7,8 @@ import FoodDetails from './components/FoodDetails'
 import DonorFile from './components/DonorFile'
 import AddressDetails from './components/AddressDetails';
 import DonorFinish from './components/DonorFinish'
-// import foodTransfer from './components/foodTransfer'
-// import HelperList from './components/HelperList'
+import foodTransfer from './components/foodTransfer'
+import HelperList from './components/HelperList'
 
 function App() {
   return (
