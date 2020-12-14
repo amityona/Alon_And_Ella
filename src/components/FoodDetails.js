@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-export default function NeedyFood() {
+export default function FoodDetails() {
     
     const classes = useStyles();
         return (

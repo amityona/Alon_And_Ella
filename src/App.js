@@ -3,10 +3,12 @@ import './App';
 import Home from './components/Home';
 import { BrowserRouter, Route } from 'react-router-dom'
 import DonorChoose from './components/DonorChoose';
-import NeedyFood from './components/NeedyFood'
+import FoodDetails from './components/FoodDetails'
 import DonorFile from './components/DonorFile'
 import AddressDetails from './components/AddressDetails';
 import DonorFinish from './components/DonorFinish'
+// import foodTransfer from './components/foodTransfer'
+// import HelperList from './components/HelperList'
 
 function App() {
   return (
@@ -19,7 +21,10 @@ function App() {
           <DonorChoose />
         </Route>
         <Route exact path="/needy/food">
-          <NeedyFood />
+          <FoodDetails />
+        </Route>
+        <Route exact path="/donor/food">
+          <FoodDetails />
         </Route>
         <Route exact path="/donor/file">
           <DonorFile />
@@ -33,8 +38,6 @@ function App() {
         <Route exact path="/donor/finish">
           <DonorFinish />
         </Route>
-
-
         <Route path="/foodTransfer" component={foodTransfer} />
 <Route path="/HelperList" component={HelperList} />
 
