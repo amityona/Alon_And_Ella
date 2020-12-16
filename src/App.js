@@ -1,18 +1,19 @@
-import logo from './logo.svg';
-import './App';
-import Home from './components/Home';
-import { BrowserRouter, Route } from 'react-router-dom'
-import DonorChoose from './components/DonorChoose';
-import NeedyFood from './components/NeedyFood'
-import DonorFile from './components/DonorFile'
-import AddressDetails from './components/AddressDetails';
-import DonorFinish from './components/DonorFinish'
+import logo from "./logo.svg";
+import "./App";
+import Home from "./components/Home";
+import { BrowserRouter, Route } from "react-router-dom";
+import DonorChoose from "./components/DonorChoose";
+import NeedyFood from "./components/NeedyFood";
+import DonorFile from "./components/DonorFile";
+import AddressDetails from "./components/AddressDetails";
+import DonorFinish from "./components/DonorFinish";
+import Activist from "./components/Activist/Activist";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      <Route exact path="/">
+        <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/donor/choose">
@@ -35,12 +36,9 @@ function App() {
         </Route>
 
 
-        <Route path="/foodTransfer" component={foodTransfer} />
-<Route path="/HelperList" component={HelperList} />
-
-
+        <Route exapt path ="/activsit"> <Activist/> </Route>
       </div>
-        </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
