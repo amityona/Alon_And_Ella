@@ -1,13 +1,15 @@
-import logo from "./logo.svg";
-import "./App";
-import Home from "./components/Home";
-import { BrowserRouter, Route } from "react-router-dom";
-import DonorChoose from "./components/DonorChoose";
-import NeedyFood from "./components/NeedyFood";
-import DonorFile from "./components/DonorFile";
-import AddressDetails from "./components/AddressDetails";
-import DonorFinish from "./components/DonorFinish";
-import Activist from "./components/Activist/Activist";
+import logo from './logo.svg';
+import './App';
+import Home from './components/Home';
+import { BrowserRouter, Route } from 'react-router-dom'
+import DonorChoose from './components/DonorChoose';
+import FoodDetails from './components/FoodDetails'
+import DonorFile from './components/DonorFile'
+import AddressDetails from './components/AddressDetails';
+import DonorFinish from './components/DonorFinish'
+import foodTransfer from './components/foodTransfer'
+import HelperList from './components/HelperList'
+import Activist from './components/Activist/Activist'
 
 function App() {
   return (
@@ -20,7 +22,10 @@ function App() {
           <DonorChoose />
         </Route>
         <Route exact path="/needy/food">
-          <NeedyFood />
+          <FoodDetails />
+        </Route>
+        <Route exact path="/donor/food">
+          <FoodDetails />
         </Route>
         <Route exact path="/donor/file">
           <DonorFile />
@@ -37,6 +42,10 @@ function App() {
 
 
         <Route exapt path ="/activsit"> <Activist/> </Route>
+        <Route path="/foodTransfer" component={foodTransfer} />
+       <Route path="/HelperList" component={HelperList} />
+
+
       </div>
     </BrowserRouter>
   );

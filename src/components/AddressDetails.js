@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {useState} from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton'
@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -52,8 +53,32 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function AddressDetails() {
-    
-    const classes = useStyles();
+
+  const [city, setCity] = useState('')  
+  const [street, setStreet] = useState('') 
+  const [number, setNumber] = useState() 
+  const [quarter, setQuarter] = useState('') 
+  const [apartment, setApartment] = useState() 
+  const [floor, setFloor] = useState() 
+  const [moreDetails, setMoreDetails] = useState('')
+  const classes = useStyles();
+
+  const handleChange = (event) => {
+    setCity(event.target.value);
+  };
+
+    function submit() {
+      console.log([
+          {"city":city, "street":street, "number":number, "quarter":quarter, "apartment":apartment, "floor":floor, "moreDetails":moreDetails}
+      ])
+      if(city && street && number && quarter && apartment && floor && moreDetails) {
+        //  return <Redirect to="/donor/choose" />
+      }else {
+          alert("יש למלא את כל הפרטים")
+      }
+      
+  
+  }
         return (
             <div>
                        <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
@@ -69,6 +94,8 @@ export default function AddressDetails() {
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           label="עיר"
+          value={city} 
+          onChange={(e) => setCity(e.target.value)}
         >
           <MenuItem >ירושלים</MenuItem>
           <MenuItem >תל אביב</MenuItem>
@@ -76,11 +103,42 @@ export default function AddressDetails() {
         </Select>
       </FormControl>
       <form className={classes.root} noValidate autoComplete="off">
-  <TextField id="outlined-basic" label="רחוב" variant="outlined" size="small"/>
-  <TextField id="outlined-basic" label="מספר" variant="outlined" size="small"/>
-  <TextField id="outlined-basic" label="שכונה" variant="outlined" size="small"/>
-  <TextField id="outlined-basic" label="דירה" variant="outlined" size="small"/>
-  <TextField id="outlined-basic" label="קומה" variant="outlined" size="small"/>
+  <TextField
+   id="outlined-basic"
+   label="רחוב" 
+   variant="outlined" 
+   size="small" 
+   value={street} 
+   onChange={(e) => setStreet(e.target.value)}/>
+  <TextField 
+  id="outlined-basic" 
+  label="מספר" 
+  variant="outlined" 
+  size="small"         
+  value={number} 
+  onChange={(e) => setNumber(e.target.value)}/>
+  <TextField id="outlined-basic" 
+  label="שכונה" 
+  variant="outlined" 
+  size="small"
+  value={quarter} 
+  onChange={(e) => setQuarter(e.target.value)}
+            />
+  <TextField 
+  id="outlined-basic" 
+  label="דירה" 
+  variant="outlined" 
+  size="small"
+  value={apartment} 
+  onChange={(e) => setApartment(e.target.value)}
+  />
+  <TextField 
+  id="outlined-basic" 
+  label="קומה" 
+  variant="outlined" 
+  size="small"
+  value={floor} 
+  onChange={(e) => setFloor(e.target.value)}/>
 </form>
 
 <p className={classes.p}>
@@ -94,10 +152,14 @@ export default function AddressDetails() {
       <p className={classes.p}>
             פרטים נוספות
             </p>
-            <TextField id="standard-size-small"  size="small" />
+            <TextField id="standard-size-small"  
+            size="small"
+            value={moreDetails} 
+            onChange={(e) => setMoreDetails(e.target.value)}
+             />
             <br/>
             <div style={{textAlign:"center", margin:20}}>
-            <Button variant="contained" >המשך</Button>
+            <Button variant="contained" onClick={submit}>המשך</Button>
             <Button text-align="center" href="">חזור</Button>
             </div>
 
