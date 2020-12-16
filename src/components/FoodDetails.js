@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton'
@@ -13,6 +13,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
 
@@ -46,8 +47,51 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function FoodDetails() {
-    
+  const foodTypes = [
+    {
+      id: 0,
+      name: "uncooked",
+    },
+    {
+      id: 1,
+      name: "cooked",
+    },
+  ]
+
+    const[foodType, setFoodType] = useState(foodTypes[0])
+    const[kashrut, setKashrut] = useState('')
+    const[allergy, setAllergy] = useState('')
+    const[more, setMore] = useState('')
     const classes = useStyles();
+    const history = useHistory()
+
+    function submitFoodType(i) {
+      setFoodType(foodTypes[i])
+    }
+
+    const selectKashrut = (event) => {
+
+      setKashrut(event.target.value)
+    };
+
+    function submitForm() {
+      history.push("/donor/address-details");
+    }
+
+    function submitFood() {
+      console.log([
+        {"foodType": foodType.name, "kashrut":kashrut, "allergy": allergy,  "more": more }
+      ])
+
+      if(foodType && kashrut && allergy) {
+        return submitForm()
+         
+        }else {
+            alert("יש למלא את כל הפרטים")
+        }
+        
+    }
+
         return (
             <div>
                        <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
@@ -58,14 +102,14 @@ export default function FoodDetails() {
             </p>
             
 <div className={classes.paper}>
-<Paper elevation={3}>
-    <IconButton>
+<Paper elevation={3} onClick={submitFoodType.bind(this, 0)}>
+    <IconButton> {" "}
 <StopIcon style={{ color: grey[900], fontSize: 40 }}></StopIcon>
 </IconButton>
 <br/>
 מצרכים
     </Paper>
-    <Paper elevation={3}>      <IconButton >
+    <Paper elevation={3} onClick={submitFoodType.bind(this, 1)}>      <IconButton >
 <FiberManualRecordIcon style={{ color: grey[900], fontSize: 40  }}></FiberManualRecordIcon>
 </IconButton>
 <br/>
@@ -81,28 +125,34 @@ export default function FoodDetails() {
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           label="כשרות"
+          value={kashrut}
+          onChange={selectKashrut}
         >
-          <MenuItem >מהדרין</MenuItem>
-          <MenuItem >רבנות</MenuItem>
-          <MenuItem >בד"ץ</MenuItem>
+          <MenuItem value={"mehadrin"}>מהדרין</MenuItem>
+          <MenuItem value={"rabanut"}>רבנות</MenuItem>
+          <MenuItem value={"badatz"}>בד"ץ</MenuItem>
         </Select>
       </FormControl>
 
       <p className={classes.p}>
              האם יש אלרגיה כלשהי?
             </p>
-            <div className={classes.button}>
-            <Button variant="contained">כן</Button>
-            <Button variant="contained">לא</Button>
+            <div className={classes.button} >
+            <Button variant="contained" onClick={() => { setAllergy('allergy'); }}>כן</Button>
+            <Button variant="contained" onClick={() => { setAllergy('no allergy'); }} >לא</Button>
             </div>
             
       <p className={classes.p}>
             בקשות נוספות
             </p>
-            <TextField id="standard-size-small"  size="small" />
+            <TextField id="standard-size-small" 
+            size="small" 
+            value={more} 
+            onChange={(e) => setMore(e.target.value)}
+            />
             <br/>
             <div style={{textAlign:"center", margin:20}}>
-            <Button variant="contained" >המשך</Button>
+            <Button variant="contained"  onClick={submitFood}>המשך</Button>
             <Button text-align="center" href="">חזור</Button>
             </div>
 
