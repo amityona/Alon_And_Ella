@@ -1,102 +1,86 @@
-import {React, Component } from 'react';
-import { Alert, Text, TouchableOpacity, TextInput, View, StyleSheet } from 'react';
-import Button from '@material-ui/core/Button';
+import React from "react"
+import { makeStyles } from "@material-ui/core/styles";
+import Box from '@material-ui/core/Box';
+import IconButton from '@material-ui/core/IconButton'
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+import Paper from '@material-ui/core/Paper';
+import DeckIcon from '@material-ui/icons/Deck';
+import PowerIcon from '@material-ui/icons/Power';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import { grey } from '@material-ui/core/colors';
+import { useHistory } from "react-router-dom";
+const useStyles = makeStyles(theme => ({
 
+    paper: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        textAlign:"center",
+        fontSize:"9",
+        '& > *': {
+          margin: theme.spacing(1.5),
+          width: theme.spacing(11),
+          height: theme.spacing(11),
+        },
+    },
 
-export default class HelperList extends Component {
+    p: {
+    textAlign:"right",
+    margin:20,
+    },
+}))
 
-    state = {
-      email: '',
-      password: '',
-    };
-  
-  
-  onLogin() {
-    const { email, password } = this.state;
+export default function DonorChoose() {
+    
+    const classes = useStyles();
+        return (
+            <div>
+                    <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
+                   לתת עזרה
+            </Box>
+            <p className={classes.p}>
+               מה תרצו לתרום?
+            </p>
+<div className={classes.paper}>
+    
+      <Paper elevation={3}>      <IconButton >
+<FastfoodIcon style={{ color: grey[900], fontSize: 35  }}></FastfoodIcon>
+</IconButton>
+<br/>
+אוכל</Paper>
+      <Paper elevation={3}>
+      <IconButton>
+<DeckIcon style={{ color: grey[900], fontSize: 35 }}></DeckIcon>
+</IconButton>
+<br/>
+ריהוט
+      </Paper>
+      <Paper elevation={3}>
+      <IconButton>
+      <PowerIcon style={{ color: grey[900], fontSize: 35  }}></PowerIcon>
+</IconButton>
+<br/>
+מוצרי חשמל
+      </Paper>
+      <Paper elevation={3}>
+      <IconButton>
+<LocationOnIcon style={{ color: grey[900], fontSize: 35 }}></LocationOnIcon>
+</IconButton>
+<br/>
+אזור עבודה
+      </Paper>
+      <Paper elevation={3}>
+      <IconButton>
+<LocalAtmIcon style={{ color: grey[900], fontSize: 35 }}></LocalAtmIcon>
+</IconButton>
+<br/>
+כסף
+      </Paper>
+    </div>
+<p className={classes.p}>
+             התרומות הפתוחות שלי (5)
+            </p>
 
-    Alert.alert('Credentials', `email: ${email} + password: ${password}`);
-  }
-
-  render() {
-    return ( 
-      <View style={styles.container}>
-      <Text style={styles.titleText}>לתת עזרה</Text>
-        <Text style={styles.titleText}>איך תרצו לעזור ?</Text>
-                  <View style={styles.container}>
-              <View style={styles.buttonContainer}>
-                <Button title="ריהוט"/>
-             
-              <View style={styles.buttonContainer}>
-                <Button title="מקום עבודה"/>
-              </View>
-               </View>
-               <View style={styles.buttonContainer}>
-                <Button title="אוכל"/>
-              
-              <View style={styles.buttonContainer}>
-                <Button title="הסעה"/>
-              </View>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Button title="מוצרי חשמל"/>
-                 <View style={styles.buttonContainer}>
-                <Button title="כסף"/>
-                 
-              <View style={styles.buttonContainer}>
-                <Button title="צפו בכל הבקשות הפתחות"/>
-                 <View style={styles.buttonContainer}>
-                <Button title="הבקשות הפתוחות שלי"/>
-              </View>
-              </View>
-              </View>
-              </View>
-            </View>
-        
-      </View>
-     
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'salmon',
-  },
-  titleText:{
-    fontFamily: 'Baskerville',
-    fontSize: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: 'powderblue',
-    width: 200,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 25,
-    marginBottom: 10,
-  },
-  buttonText:{
-    fontFamily: 'Baskerville',
-    fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    width: 200,
-    fontFamily: 'Baskerville',
-    fontSize: 20,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'white',
-    marginVertical: 10,
-  },
-});
-
+    </div>
+        )
+    }

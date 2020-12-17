@@ -1,87 +1,74 @@
-import React, { Component } from 'react';
-import { Alert, Button, Text, TouchableOpacity, TextInput, View, StyleSheet } from 'react';
+import React from "react"
+import { makeStyles } from "@material-ui/core/styles";
+import Box from '@material-ui/core/Box';
+import IconButton from '@material-ui/core/IconButton'
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+import Paper from '@material-ui/core/Paper';
+import DeckIcon from '@material-ui/icons/Deck';
+import PowerIcon from '@material-ui/icons/Power';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import { grey } from '@material-ui/core/colors';
 
 
-export default class foodTransfer extends Component {
+const useStyles = makeStyles(theme => ({
 
-    state = {
-      email: '',
-      password: '',
-    };
-  
-  
-  onLogin() {
+    paper: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        textAlign:"center",
+        fontSize:"9",
+        '& > *': {
+          margin: theme.spacing(1.5),
+          width: theme.spacing(11),
+          height: theme.spacing(11),
+        },
+    },
+
+    p: {
+    textAlign:"right",
+    margin:20,
+    },
+}))
+
+export default function DonorChoose() {
     
-  }
-
-  render() {
-    return ( 
-      
-      <View style={styles.container}>
-      <Text style={styles.titleText}>שינוע מזון</Text>
-        <Text style={styles.titleText}>30.10.20</Text>
-                  <View style={styles.container}>
-              <View style={styles.buttonContainer}>
-                <Button title="נא פרט את בקשתך :"/>
-            
-              </View>
-       <View  style={styles.container}>
-              <View style={styles.buttonContainer}>
-                <Button title="חזור"/>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Button title="מחק"/>
-              </View>
-               <View style={styles.buttonContainer}>
-                <Button title="בוצע"/>
-              </View>
-            </View>
-              </View>
-              </View>
-
-     
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'salmon',
-  },
-  titleText:{
-    fontFamily: 'Baskerville',
-    fontSize: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: 'powderblue',
-    width: 200,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 25,
-    marginBottom: 10,
-  },
-  buttonText:{
-    fontFamily: 'Baskerville',
-    fontSize: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    width: 200,
-    fontFamily: 'Baskerville',
-    fontSize: 20,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: 'white',
-    marginVertical: 10,
-  },
-});
+    const classes = useStyles();
+        return (
+            <div>
+                    <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
+             שינוע מזון
+            </Box>
+            <p className={classes.p}>
+               נא פרט את בקשתך
+            </p>
+<div className={classes.paper}>
+    
+      <Paper elevation={3}>      <IconButton >
+<FastfoodIcon style={{ color: grey[900], fontSize: 35  }}></FastfoodIcon>
+</IconButton>
+<br/>
+חזור</Paper>
+      <Paper elevation={3}>
+      <IconButton>
+<DeckIcon style={{ color: grey[900], fontSize: 35 }}></DeckIcon>
+</IconButton>
+<br/>
+מחק
+      </Paper>
+      <Paper elevation={3}>
+      <IconButton>
+      <PowerIcon style={{ color: grey[900], fontSize: 35  }}></PowerIcon>
+</IconButton>
+<br/>
+בוצע
+      </Paper>
+      <Paper elevation={3}>
+      <IconButton>
+<LocationOnIcon style={{ color: grey[900], fontSize: 35 }}></LocationOnIcon>
+</IconButton>
+</Paper>
+</div>
+</div>
+)
+    }
