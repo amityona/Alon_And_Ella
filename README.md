@@ -4,7 +4,7 @@
 
 [Person in need](https://xd.adobe.com/view/b1db0763-f8fd-48db-b294-d3f24559a2d8-e488/)
 
-[Manager]()
+[Manager](https://xd.adobe.com/view/11b51baf-dd99-49fd-a747-a40292058398-44e6/)
 
 # Getting Started with Create React App
 
