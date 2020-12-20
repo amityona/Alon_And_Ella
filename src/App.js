@@ -3,7 +3,7 @@ import './App';
 import Home from './components/Home';
 import { BrowserRouter, Route } from 'react-router-dom'
 import DonorChoose from './components/DonorChoose';
-import NeedyFood from './components/NeedyFood'
+import FoodDetails from './components/FoodDetails'
 import DonorFile from './components/DonorFile'
 import AddressDetails from './components/AddressDetails';
 import DonorFinish from './components/DonorFinish'
@@ -11,18 +11,23 @@ import FoodTransfer from './components/FoodTransfer'
 import HelperList from './components/HelperList'
 import GiveFood from './components/GiveFood'
 import AddImage from './components/AddImage'
+import Activist from './components/Activist/Activist'
+
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      <Route exact path="/">
+        <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/donor/choose">
           <DonorChoose />
         </Route>
         <Route exact path="/needy/food">
-          <NeedyFood />
+          <FoodDetails />
+        </Route>
+        <Route exact path="/donor/food">
+          <FoodDetails />
         </Route>
         <Route exact path="/donor/file">
           <DonorFile />
@@ -51,7 +56,7 @@ function App() {
 
 
       </div>
-        </BrowserRouter>
+    </BrowserRouter>
   );
 }
 

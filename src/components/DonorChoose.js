@@ -1,5 +1,5 @@
-import React from "react"
-import { makeStyles } from "@material-ui/core/styles";
+import React, {useState} from "react"
+import { fade, makeStyles } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton'
 import FastfoodIcon from '@material-ui/icons/Fastfood';
@@ -9,6 +9,7 @@ import PowerIcon from '@material-ui/icons/Power';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import { grey } from '@material-ui/core/colors';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
 
@@ -22,19 +23,67 @@ const useStyles = makeStyles(theme => ({
           width: theme.spacing(11),
           height: theme.spacing(11),
         },
-    },
+      },
 
+      //   icon:{
+      //   '&:hover': {
+      //         background:'#00b0ff',
+      //   },
+      // },
     p: {
     textAlign:"right",
     margin:20,
-    },
+},
 }))
 
 export default function DonorChoose() {
-    
+      const items = [
+            {
+              id: 0,
+              name: "food",
+              path:"/donor/food"
+            },
+            {
+              id: 1,
+              name: "furniture",
+              path:''
+            },
+            {
+              id: 2,
+              name: "power",
+              path:''
+            },
+            {
+              id: 3,
+              name: "location",
+              path:''
+            },
+            {
+              id: 4,
+              name: "money",
+              path:''
+            },
+          ];
+    const[item, setItem] = useState(items[0])
     const classes = useStyles();
+    const history = useHistory()
+
+    function submitForm(i) {
+      setItem(items[i])
+      if (item.color == ''){
+           setItem({ color: 'green' });
+        }
+        else {
+            setItem({ color: '' });
+        }
+    console.log(items[i]);
+ 
+    history.push(items[i].path);
+    
+  }
         return (
             <div>
+
                     <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
                    לתת עזרה
             </Box>
@@ -43,33 +92,33 @@ export default function DonorChoose() {
             </p>
 <div className={classes.paper}>
     
-      <Paper elevation={3}>      <IconButton >
-<FastfoodIcon style={{ color: grey[900], fontSize: 35  }}></FastfoodIcon>
+      <Paper elevation={3} onClick={submitForm.bind(this, 0)} >  {" "}     <IconButton>
+<FastfoodIcon style={{ color: grey[900], fontSize: 35  }} ></FastfoodIcon>
 </IconButton>
 <br/>
 אוכל</Paper>
-      <Paper elevation={3}>
+      <Paper elevation={3} onClick={submitForm.bind(this, 1)}  >
       <IconButton>
 <DeckIcon style={{ color: grey[900], fontSize: 35 }}></DeckIcon>
 </IconButton>
 <br/>
 ריהוט
       </Paper>
-      <Paper elevation={3}>
+      <Paper elevation={3} onClick={submitForm.bind(this, 2)} >
       <IconButton>
       <PowerIcon style={{ color: grey[900], fontSize: 35  }}></PowerIcon>
 </IconButton>
 <br/>
 מוצרי חשמל
       </Paper>
-      <Paper elevation={3}>
+      <Paper elevation={3} onClick={submitForm.bind(this, 3)} >
       <IconButton>
 <LocationOnIcon style={{ color: grey[900], fontSize: 35 }}></LocationOnIcon>
 </IconButton>
 <br/>
 אזור עבודה
       </Paper>
-      <Paper elevation={3}>
+      <Paper elevation={3} onClick={submitForm.bind(this, 4)} >
       <IconButton>
 <LocalAtmIcon style={{ color: grey[900], fontSize: 35 }}></LocalAtmIcon>
 </IconButton>
@@ -83,4 +132,4 @@ export default function DonorChoose() {
 
     </div>
         )
-    }
+        }
