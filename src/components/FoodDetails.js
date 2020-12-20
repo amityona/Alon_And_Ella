@@ -14,6 +14,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import { FcHome } from "react-icons/fc";
 
 const useStyles = makeStyles(theme => ({
 
@@ -42,6 +44,16 @@ const useStyles = makeStyles(theme => ({
         '& > *': {
             margin: theme.spacing(1),
           },
+      },
+      header: {
+        textAlign: "right",
+        padding: 15,
+        fontSize: 20,
+        fontWeight: 700,
+      },
+      countinueButton: {
+        paddingTop:110,
+        marginRight:220,
       },
 
 }))
@@ -94,7 +106,7 @@ export default function FoodDetails() {
 
         return (
             <div>
-                       <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
+                        <Box className={classes.header} p={1} bgcolor="#C0EDF2" margin="0">
                    לקבל מזון<IconButton><PlayArrowIcon style={{ color: grey[900], fontSize: 15  }}></PlayArrowIcon></IconButton>
             </Box>
             <p className={classes.p}>
@@ -119,6 +131,18 @@ export default function FoodDetails() {
     <p style={{margin:10, textAlign: "right"}}>
                כשרות
             </p>
+            <Form  noValidate autoComplete="off">
+        <Form.Group controlId="formKashrut">
+          {/* <Form.Control type="text" placeholder="כשרות" className={classes.form} value={kashrut}
+          onChange={selectKashrut}/> */}
+        <Form.Control size="sm" as="select">
+    <option value={"rabanut"}>רבנות</option>
+    <option value={"mehadrin"}>מהדרין</option>
+    <option value={"badatz"}>בד"ץ</option>
+  </Form.Control>
+  </Form.Group>
+</Form>
+{/*             
             <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">כשרות</InputLabel>
         <Select
@@ -132,7 +156,7 @@ export default function FoodDetails() {
           <MenuItem value={"rabanut"}>רבנות</MenuItem>
           <MenuItem value={"badatz"}>בד"ץ</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl> */}
 
       <p className={classes.p}>
              האם יש אלרגיה כלשהי?
@@ -151,12 +175,11 @@ export default function FoodDetails() {
             onChange={(e) => setMore(e.target.value)}
             />
             <br/>
-            <div style={{textAlign:"center", margin:20}}>
-            <Button variant="contained"  onClick={submitFood}>המשך</Button>
+            <Box  className={classes.countinueButton}>
+            <Button variant="contained"  onClick={submitFood} >המשך</Button>
             <Button text-align="center" href="">חזור</Button>
-            </div>
-
-            </div>
+            </Box>
+</div>
 
         )
 }
