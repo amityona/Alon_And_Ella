@@ -46,13 +46,18 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-export default function NeedyFood() {
-    
+
+export default function GiveFood() {
+  const history = useHistory();
+    function handleClick() {
+      history.push("/AddImage");
+    }
+  
     const classes = useStyles();
         return (
             <div>
                        <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
-                   לתרום מזון<IconButton><PlayArrowIcon style={{ color: grey[900], fontSize: 15  }}></PlayArrowIcon></IconButton>
+                   לתרום מזון<IconButton><PlayArrowIcon onclick={handleClick } style={{ color: grey[900], fontSize: 15  }}></PlayArrowIcon></IconButton>
             </Box>
             <p className={classes.p}>
                איזה מזון תרצו לתרום?

@@ -10,6 +10,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import { grey } from '@material-ui/core/colors';
 import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles(theme => ({
 
     paper: {
@@ -29,8 +30,15 @@ const useStyles = makeStyles(theme => ({
     margin:20,
     },
 }))
+function HomeButton() {
+      let history = useHistory();
+    
+      function handleClick() {
+        history.push("/GiveFood");
+      }
+}
 
-export default function DonorChoose() {
+export default function HelperList() {
     
     const classes = useStyles();
         return (

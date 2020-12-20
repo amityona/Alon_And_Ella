@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function DonorFile() {
+
+export default function AddImage() {
     
     const classes = useStyles();
         return (
