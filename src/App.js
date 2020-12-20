@@ -9,12 +9,13 @@ import AddressDetails from './components/AddressDetails';
 import DonorFinish from './components/DonorFinish'
 import foodTransfer from './components/foodTransfer'
 import HelperList from './components/HelperList'
+import Activist from './components/Activist/Activist'
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      <Route exact path="/">
+        <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/donor/choose">
@@ -38,12 +39,15 @@ function App() {
         <Route exact path="/donor/finish">
           <DonorFinish />
         </Route>
+
+
+        <Route exapt path ="/activsit"> <Activist/> </Route>
         <Route path="/foodTransfer" component={foodTransfer} />
-<Route path="/HelperList" component={HelperList} />
+       <Route path="/HelperList" component={HelperList} />
 
 
       </div>
-        </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
