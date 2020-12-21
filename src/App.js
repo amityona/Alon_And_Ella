@@ -14,6 +14,7 @@ import AddImage from './components/AddImage'
 import Activist from './components/Activist/Activist'
 import DonorHome from './components/DonorHome';
 import AllOrders from './components/AllOrders';
+import OrderDetails from './components/OrderDetails';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route exact path="/donor/all-orders">
           <AllOrders />
+        </Route>
+        <Route exact path="/donor/order-details">
+          <OrderDetails />
         </Route>
         <Route exact path="/donor/choose">
           <DonorChoose />
