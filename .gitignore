@@ -22,4 +22,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .eslintcache
+<<<<<<< HEAD
+src/components/HelperList.js
+=======
 .eslintcache
+>>>>>>> 62abc230edb13173d2361718ae23048b45af2c98

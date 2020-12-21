@@ -7,8 +7,10 @@ import FoodDetails from './components/FoodDetails'
 import DonorFile from './components/DonorFile'
 import AddressDetails from './components/AddressDetails';
 import DonorFinish from './components/DonorFinish'
-import foodTransfer from './components/foodTransfer'
+import FoodTransfer from './components/FoodTransfer'
 import HelperList from './components/HelperList'
+import GiveFood from './components/GiveFood'
+import AddImage from './components/AddImage'
 import Activist from './components/Activist/Activist'
 import DonorHome from './components/DonorHome';
 import AllOrders from './components/AllOrders';
@@ -47,11 +49,18 @@ function App() {
         <Route exact path="/donor/finish">
           <DonorFinish />
         </Route>
+      
+        <Route path="/foodTransfer"> <FoodTransfer/> 
+        </Route>
+        <Route path="/HelperList"> <HelperList/> 
+        </Route>
+        
+        <Route path="/GiveFood"> <GiveFood/> 
+        </Route>
+        <Route path="/AddImage"> <AddImage/> 
+        </Route>
 
 
-        <Route exapt path ="/activsit"> <Activist/> </Route>
-        <Route path="/foodTransfer" component={foodTransfer} />
-       <Route path="/HelperList" component={HelperList} />
 
 
       </div>
