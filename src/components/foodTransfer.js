@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function DonorChoose() {
+export default function FoodTransfer() {
     
     const classes = useStyles();
         return (
