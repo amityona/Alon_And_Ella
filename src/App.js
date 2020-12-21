@@ -10,6 +10,8 @@ import DonorFinish from './components/DonorFinish'
 import foodTransfer from './components/foodTransfer'
 import HelperList from './components/HelperList'
 import Activist from './components/Activist/Activist'
+import DonorHome from './components/DonorHome';
+import AllOrders from './components/AllOrders';
 
 function App() {
   return (
@@ -17,6 +19,12 @@ function App() {
       <div className="App">
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/donor">
+          <DonorHome />
+        </Route>
+        <Route exact path="/donor/all-orders">
+          <AllOrders />
         </Route>
         <Route exact path="/donor/choose">
           <DonorChoose />
