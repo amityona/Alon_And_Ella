@@ -7,13 +7,15 @@ import FoodDetails from './components/FoodDetails'
 import DonorFile from './components/DonorFile'
 import AddressDetails from './components/AddressDetails';
 import DonorFinish from './components/DonorFinish'
-import FoodTransfer from './components/FoodTransfer'
+import FoodTransfer from './components/foodTransfer';
 import HelperList from './components/HelperList'
 import GiveFood from './components/GiveFood'
 import AddImage from './components/AddImage'
 import Activist from './components/Activist/Activist'
 import DonorHome from './components/DonorHome';
 import AllOrders from './components/AllOrders';
+import AdminManagment from './components/AdminManagement';
+import AssignmentToDonation from './components/AssignmentToDonation';
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
         </Route>
         <Route exact path="/donor/all-orders">
           <AllOrders />
+        </Route>
+        <Route exact path="/donor/order-details">
+          <OrderDetails />
         </Route>
         <Route exact path="/donor/choose">
           <DonorChoose />
@@ -48,6 +53,12 @@ function App() {
         </Route>
         <Route exact path="/donor/finish">
           <DonorFinish />
+        </Route>
+        <Route exact path="/AssignmentToDonation">
+          <AssignmentToDonation />
+        </Route>
+        <Route exact path="/AdminManagement">
+          <AdminManagment />
         </Route>
       
         <Route path="/foodTransfer"> <FoodTransfer/> 
