@@ -7,7 +7,7 @@ import FoodDetails from './components/FoodDetails'
 import DonorFile from './components/DonorFile'
 import AddressDetails from './components/AddressDetails';
 import DonorFinish from './components/DonorFinish'
-import FoodTransfer from './components/foodTransfer';
+import FoodTransfer from './components/FoodTransfer';
 import HelperList from './components/HelperList'
 import GiveFood from './components/GiveFood'
 import AddImage from './components/AddImage'
@@ -16,6 +16,7 @@ import DonorHome from './components/DonorHome';
 import AllOrders from './components/AllOrders';
 import AdminManagment from './components/AdminManagement';
 import AssignmentToDonation from './components/AssignmentToDonation';
+import OrderDetails from './components/OrderDetails';
 
 function App() {
   return (
@@ -61,7 +62,7 @@ function App() {
           <AdminManagment />
         </Route>
       
-        <Route path="/foodTransfer"> <FoodTransfer/> 
+        <Route path="/FoodTransfer"> <FoodTransfer/> 
         </Route>
         <Route path="/HelperList"> <HelperList/> 
         </Route>

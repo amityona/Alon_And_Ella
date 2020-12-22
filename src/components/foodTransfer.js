@@ -1,6 +1,14 @@
-import React, { Component } from 'react';
-import { Alert, Button, Text, TouchableOpacity, TextInput, View, StyleSheet } from 'react';
-
+import React from "react"
+import { makeStyles } from "@material-ui/core/styles";
+import Box from '@material-ui/core/Box';
+import IconButton from '@material-ui/core/IconButton'
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+import Paper from '@material-ui/core/Paper';
+import DeckIcon from '@material-ui/icons/Deck';
+import PowerIcon from '@material-ui/icons/Power';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
 
@@ -24,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function FoodTransfer() {
     
+        
     const classes = useStyles();
         return (
             <div>
@@ -62,4 +71,4 @@ export default function FoodTransfer() {
 </div>
 </div>
 )
-    }
+    } 
