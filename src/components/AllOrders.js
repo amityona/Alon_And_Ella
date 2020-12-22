@@ -13,15 +13,18 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
         textAlign:"center",
         fontSize:"6",
+      
         '& > *': {
           margin: theme.spacing(1),
-        //   marginRight: theme.spacing(1),
-        //   marginLeft: theme.spacing(2),
+          marginRight: theme.spacing(4),
+        //  marginLeft: theme.spacing(10),
           width: theme.spacing(30),
           height: theme.spacing(3),
+          padding: theme.spacing(1),
         },
       },
   p: {
+    direction : "ltr",
     textAlign: "right",
     margin: 20,
   },
