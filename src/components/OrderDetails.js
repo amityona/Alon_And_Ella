@@ -83,6 +83,7 @@ export default function OrderDetails() {
 
   function submit() {
     console.log([{"donorPay":selectedValue}])
+    history.push("/donor/all-orders");
   }
   return (
     <div>
