@@ -9,6 +9,7 @@ import PowerIcon from '@material-ui/icons/Power';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import { grey } from '@material-ui/core/colors';
+import { Divider } from "material-ui";
 
 const useStyles = makeStyles(theme => ({
 
@@ -35,6 +36,7 @@ export default function FoodTransfer() {
         
     const classes = useStyles();
         return (
+            
             <div>
                     <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
              שינוע מזון
@@ -42,6 +44,7 @@ export default function FoodTransfer() {
             <p className={classes.p}>
                נא פרט את בקשתך
             </p>
+            
 <div className={classes.paper}>
     
       <Paper elevation={3}>      <IconButton >
