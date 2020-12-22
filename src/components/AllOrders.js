@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
       },
   p: {
     textAlign: "right",
-    margin: 50,
+    margin: 20,
   },
   header: {
     textAlign: "right",
@@ -48,7 +48,11 @@ export default function AllOrders() {
         date:"15.12.2020"
     }
   ]
-  const listMyOrders = myOrders.map((o)=> <Paper key={o.order}>{o.date} {o.order}</Paper>)
+  const listMyOrders = myOrders.map((o)=> <Paper key={o.order} onClick={submit}>{o.date} {o.order}</Paper>)
+  
+  function submit() {
+      
+  }
 
   return (
     <div>

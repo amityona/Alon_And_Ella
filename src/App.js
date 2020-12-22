@@ -30,6 +30,9 @@ function App() {
         <Route exact path="/donor/all-orders">
           <AllOrders />
         </Route>
+        <Route exact path="/donor/order-details">
+          <OrderDetails />
+        </Route>
         <Route exact path="/donor/choose">
           <DonorChoose />
         </Route>
