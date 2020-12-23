@@ -18,6 +18,7 @@ import AdminManagment from './components/AdminManagement';
 import AssignmentToDonation from './components/AssignmentToDonation';
 import OrderDetails from './components/OrderDetails';
 import MyOrderDetails from './components/MyOrderDetails';
+import CookedFood from './components/CookedFood';
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
         </Route>
         <Route exact path="/donor/food">
           <FoodDetails />
+        </Route>
+        <Route exact path="/donor/food/cooked">
+          <CookedFood />
         </Route>
         <Route exact path="/donor/file">
           <DonorFile />

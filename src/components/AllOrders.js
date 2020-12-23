@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "./UI/Button.js";
 import Box from "@material-ui/core/Box";
 import { useHistory } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
@@ -61,7 +60,7 @@ export default function AllOrders() {
         date:"15.12.2020"
     }
   ]
-  const listMyOrders = myOrders.map((o)=> <Paper key={o.order} onClick={submit}>{o.date} {o.order}</Paper>)
+  const listMyOrders = myOrders.map((o)=> <Paper key={o.order}>{o.date} {o.order}</Paper>)
   const [open, setOpen] = useState(true);
   const [open2, setOpen2] = useState(true);
 
@@ -72,8 +71,12 @@ export default function AllOrders() {
     setOpen2(!open2);
   };
 
-  function submit(i) {
-// console.log(myOrders[i])
+  function myOrderClick() {
+    history.push("/donor/my-order-details");
+  }
+
+  function orderDetailsClick() {
+    history.push("/donor/order-details");
   }
 
   return (
@@ -92,7 +95,7 @@ export default function AllOrders() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-          <Box className={classes.paper}>
+          <Box className={classes.paper} onClick={myOrderClick}>
  {listMyOrders}
        </Box>
             <ListItemText primary="" />
@@ -109,7 +112,7 @@ export default function AllOrders() {
       <Collapse in={open2} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-          <Box className={classes.paper}>
+          <Box className={classes.paper} onClick={orderDetailsClick}>
             {listMyOrders}
          </Box>
             <ListItemText primary="" />
