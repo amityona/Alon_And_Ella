@@ -17,6 +17,7 @@ import AllOrders from './components/AllOrders';
 import AdminManagment from './components/AdminManagement';
 import AssignmentToDonation from './components/AssignmentToDonation';
 import OrderDetails from './components/OrderDetails';
+import MyOrderDetails from './components/MyOrderDetails';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route exact path="/donor/order-details">
           <OrderDetails />
+        </Route>
+        <Route exact path="/donor/my-order-details">
+          <MyOrderDetails />
         </Route>
         <Route exact path="/donor/choose">
           <DonorChoose />
