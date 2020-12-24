@@ -9,7 +9,6 @@ import PowerIcon from '@material-ui/icons/Power';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import { grey } from '@material-ui/core/colors';
-import { Divider } from "material-ui";
 
 const useStyles = makeStyles(theme => ({
 
