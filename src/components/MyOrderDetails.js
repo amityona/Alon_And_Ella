@@ -5,7 +5,18 @@ import Box from "@material-ui/core/Box";
 import { useHistory } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import { BiDonateHeart } from "react-icons/bi"
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
+const SecondPage = props => {
+  const location = useLocation();
+
+  useEffect(() => {
+     console.log(location.pathname); // result: '/secondpage'
+     console.log(location.state.detail); // result: 'some_value'
+  }, [location]);
+
+};
 const useStyles = makeStyles(theme => ({
     root: {
         position:"relative",
@@ -54,6 +65,7 @@ const useStyles = makeStyles(theme => ({
 export default function MyOrderDetails() {
   const classes = useStyles();
   const history = useHistory();
+  SecondPage();
   const myOrders = [
       {
           id:0,

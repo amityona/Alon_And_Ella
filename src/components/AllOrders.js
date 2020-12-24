@@ -72,7 +72,10 @@ export default function AllOrders() {
   };
 
   function myOrderClick() {
-    history.push("/donor/my-order-details");
+    history.push({
+      pathname: '/donor/my-order-details',
+      state: { detail: 'id1234' }
+  });
   }
 
   function orderDetailsClick() {
