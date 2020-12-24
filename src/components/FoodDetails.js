@@ -15,7 +15,6 @@ import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { FcHome } from "react-icons/fc";
 
 const useStyles = makeStyles(theme => ({
   form: {

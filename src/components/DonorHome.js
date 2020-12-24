@@ -4,7 +4,6 @@ import Button from "./UI/Button.js";
 import Box from "@material-ui/core/Box";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { FcHome } from "react-icons/fc";
 import { BiDonateHeart } from "react-icons/bi"
 
 const useStyles = makeStyles((theme) => ({
@@ -97,7 +96,7 @@ export default function DonorHome() {
       </Box>
       <br />
       <Box style={{textAlign: "center"}}>
-      <a href="www.google.com">לאתר העמותה</a>
+      <a href="http://localhost:3000/donor/">לאתר העמותה</a>
       </Box>
     </div>
   );
