@@ -44,7 +44,7 @@ export default function Home() {
   const history = useHistory();
 
   function submitForm() {
-    history.push("/donor/choose");
+    history.push("/FoodType");
   }
 
   function submit() {

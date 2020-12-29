@@ -12,7 +12,12 @@ import HelperList from './components/HelperList'
 import GiveFood from './components/GiveFood'
 import AddImage from './components/AddImage'
 import Activist from './components/Activist/Activist'
-
+import FoodType from './components/FoodType'
+import Groceries from './components/Groceries '
+import CookedFood from './components/CookedFood'
+import ClientFinish from './components/ClientFinish'
+import LastGroceries from './components/LastGroceries' 
+import ClientHome from './components/ClientHome' 
 function App() {
   return (
     <BrowserRouter>
@@ -52,6 +57,20 @@ function App() {
         <Route path="/AddImage"> <AddImage/> 
         </Route>
 
+        <Route path="/CookedFood"> <CookedFood/> 
+        </Route>
+        <Route path="/FoodType"> <FoodType/> 
+        </Route>
+        <Route path="/Groceries"> <Groceries/> 
+        </Route>
+        <Route path="/ClientFinish"> <ClientFinish/> 
+        </Route>
+        <Route path="/LastGroceries"> <LastGroceries/> 
+        </Route>
+
+        <Route path="/donor/ClientHome">
+          <ClientHome />
+        </Route>
 
 
 
