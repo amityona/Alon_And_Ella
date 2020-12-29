@@ -1,22 +1,24 @@
-import logo from './logo.svg';
-import './App';
-import Home from './components/Home';
-import { BrowserRouter, Route } from 'react-router-dom'
-import DonorChoose from './components/DonorChoose';
-import FoodDetails from './components/FoodDetails'
-import DonorFile from './components/DonorFile'
-import AddressDetails from './components/AddressDetails';
-import DonorFinish from './components/DonorFinish'
-import FoodTransfer from './components/FoodTransfer';
-import HelperList from './components/HelperList'
-import GiveFood from './components/GiveFood'
-import AddImage from './components/AddImage'
-import Activist from './components/Activist/Activist'
-import DonorHome from './components/DonorHome';
-import AllOrders from './components/AllOrders';
-import AdminManagment from './components/AdminManagement';
-import AssignmentToDonation from './components/AssignmentToDonation';
-import OrderDetails from './components/OrderDetails';
+import logo from "./logo.svg";
+import "./App";
+import Home from "./components/Home";
+import { BrowserRouter, Route } from "react-router-dom";
+import DonorChoose from "./components/DonorChoose";
+import FoodDetails from "./components/FoodDetails";
+import DonorFile from "./components/DonorFile";
+import AddressDetails from "./components/AddressDetails";
+import DonorFinish from "./components/DonorFinish";
+import FoodTransfer from "./components/FoodTransfer";
+import HelperList from "./components/HelperList";
+import GiveFood from "./components/GiveFood";
+import AddImage from "./components/AddImage";
+import Activist from "./components/Activist/Activist";
+import DonorHome from "./components/DonorHome";
+import AllOrders from "./components/AllOrders";
+import AdminManagment from "./components/Admin/AdminManagement";
+import OrderToConfirmation from "./components/Admin/OrderToConfirmation";
+import OrderDetails from "./components/OrderDetails";
+import OrderInProgress from "./components/Admin/OrderInProgress";
+import OrderCompleted from "./components/Admin/OrderCompleted";
 
 function App() {
   return (
@@ -55,26 +57,30 @@ function App() {
         <Route exact path="/donor/finish">
           <DonorFinish />
         </Route>
-        <Route exact path="/AssignmentToDonation">
-          <AssignmentToDonation />
+        <Route exact path="/Admin/OrderToConfirmation">
+          <OrderToConfirmation />
         </Route>
-        <Route exact path="/AdminManagement">
+        <Route exact path="/Admin/AdminManagement">
           <AdminManagment />
         </Route>
-      
-        <Route path="/FoodTransfer"> <FoodTransfer/> 
+        <Route exact path="/Admin/OrderInProgress">
+          <OrderInProgress />
         </Route>
-        <Route path="/HelperList"> <HelperList/> 
+        <Route exact path="/Admin/OrderCompleted">
+          <OrderCompleted />
         </Route>
-        
-        <Route path="/GiveFood"> <GiveFood/> 
+        <Route path="/FoodTransfer">
+          <FoodTransfer />
         </Route>
-        <Route path="/AddImage"> <AddImage/> 
+        <Route path="/HelperList">
+          <HelperList />
         </Route>
-
-
-
-
+        <Route path="/GiveFood">
+          <GiveFood />
+        </Route>
+        <Route path="/AddImage">
+          <AddImage />
+        </Route>
       </div>
     </BrowserRouter>
   );

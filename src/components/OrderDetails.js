@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import { BiDonateHeart } from "react-icons/bi"
 import Radio from '@material-ui/core/Radio';
+import { Container } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
 
@@ -20,11 +21,13 @@ const useStyles = makeStyles(theme => ({
           margin: theme.spacing(3),
           width: theme.spacing(25),
           height: theme.spacing(25),
+          justifycontent: 'center'
         },
       },
   p: {
     textAlign: "right",
     margin: 35,
+    justifyContent: "center"
   },
   header: {
     textAlign: "right",
@@ -36,7 +39,10 @@ const useStyles = makeStyles(theme => ({
     margin:20,
     paddingTop:80,
     textAlign: "left",
+    position: "relative",
   },
+
+ 
 }));
 
 export default function OrderDetails() {
@@ -86,15 +92,16 @@ export default function OrderDetails() {
     history.push("/donor/all-orders");
   }
   return (
-    <div>
-      <Box className={classes.header} p={1} bgcolor="#C0EDF2" margin="0">
+    <Container  >
+ <div>
+      <Box className={classes.header} p={1} bgcolor="#C0EDF2" margin="0" >
         פרטי הזמנה
         <BiDonateHeart />
       </Box>
-      <p className={classes.p}>
+      <p className={classes.p} >
        {listMyOrders}
       </p>
-      <Box className={classes.paper}>
+      <Box className={classes.paper} justifyContent="center">
  <Paper elevation={3}>
 {listProducts}
 </Paper>
@@ -130,10 +137,19 @@ export default function OrderDetails() {
         >
           לקחתי
         </Button>
-      </Box>
+      
       <Box style={{textAlign: "right", margin:20, marginBottom:50}}>
-        <a href="all-orders">חזור</a>
+         <a href="all-orders">חזור</a> 
+        <Button className = {classes.button2}
+          variant="outlined"
+          color="primary"
+          onClick={submit}
+        >
+          חזור
+        </Button>
+        </Box>
         </Box>
     </div>
+    </Container>
   );
 }
