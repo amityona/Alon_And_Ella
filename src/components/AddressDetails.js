@@ -22,6 +22,12 @@ const useStyles = makeStyles(theme => ({
         },
     },
 
+    header: {
+      textAlign: "right",
+      padding: 15,
+      fontSize: 20,
+      fontWeight: 700,
+    },
     p: {
     textAlign:"right",
     margin:20,
@@ -81,7 +87,7 @@ export default function AddressDetails() {
   }
         return (
             <div>
-                       <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
+                       <Box className={classes.header} p={1} bgcolor="#C0EDF2" margin="0">
                        <IconButton><PlayArrowIcon style={{ color: grey[900], fontSize: 15  }}></PlayArrowIcon></IconButton>איפה אתם
             </Box>
             <p className={classes.p}>

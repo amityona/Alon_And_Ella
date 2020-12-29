@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div>
       <Link to="/">login </Link>
-      <Link to="/foodTransfer" >foodTransfer </Link>
+      <Link to="/foodTransfer" >FoodTransfer </Link>
       <Link to="/HelperList"> HelperList </Link>
     </div>
   );

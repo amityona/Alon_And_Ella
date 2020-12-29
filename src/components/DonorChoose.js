@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { fade, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton'
 import FastfoodIcon from '@material-ui/icons/Fastfood';
@@ -10,6 +10,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import { grey } from '@material-ui/core/colors';
 import { useHistory } from "react-router-dom";
+import { FcHome } from "react-icons/fc";
 
 const useStyles = makeStyles(theme => ({
 
@@ -25,11 +26,12 @@ const useStyles = makeStyles(theme => ({
         },
       },
 
-      //   icon:{
-      //   '&:hover': {
-      //         background:'#00b0ff',
-      //   },
-      // },
+      header: {
+        textAlign: "right",
+        padding: 15,
+        fontSize: 20,
+        fontWeight: 700,
+      },
     p: {
     textAlign:"right",
     margin:20,
@@ -84,8 +86,9 @@ export default function DonorChoose() {
         return (
             <div>
 
-                    <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
+                    <Box className={classes.header} p={1} bgcolor="#C0EDF2" margin="0">
                    לתת עזרה
+                   <FcHome />
             </Box>
             <p className={classes.p}>
                מה תרצו לתרום?

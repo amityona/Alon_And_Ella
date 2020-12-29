@@ -10,7 +10,6 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import { grey } from '@material-ui/core/colors';
 
-
 const useStyles = makeStyles(theme => ({
 
     paper: {
@@ -31,10 +30,12 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function DonorChoose() {
+export default function FoodTransfer() {
     
+        
     const classes = useStyles();
         return (
+            
             <div>
                     <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
              שינוע מזון
@@ -42,6 +43,7 @@ export default function DonorChoose() {
             <p className={classes.p}>
                נא פרט את בקשתך
             </p>
+            
 <div className={classes.paper}>
     
       <Paper elevation={3}>      <IconButton >
@@ -71,4 +73,4 @@ export default function DonorChoose() {
 </div>
 </div>
 )
-    }
+    } 

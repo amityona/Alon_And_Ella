@@ -7,7 +7,7 @@ import FoodDetails from './components/FoodDetails'
 import DonorFile from './components/DonorFile'
 import AddressDetails from './components/AddressDetails';
 import DonorFinish from './components/DonorFinish'
-import FoodTransfer from './components/FoodTransfer'
+import FoodTransfer from './components/FoodTransfer';
 import HelperList from './components/HelperList'
 import GiveFood from './components/GiveFood'
 import AddImage from './components/AddImage'
@@ -18,12 +18,32 @@ import CookedFood from './components/CookedFood'
 import ClientFinish from './components/ClientFinish'
 import LastGroceries from './components/LastGroceries' 
 import ClientHome from './components/ClientHome' 
+import DonorHome from './components/DonorHome';
+import AllOrders from './components/AllOrders';
+import AdminManagment from './components/AdminManagement';
+import AssignmentToDonation from './components/AssignmentToDonation';
+import OrderDetails from './components/OrderDetails';
+import MyOrderDetails from './components/MyOrderDetails';
+import CookedFood from './components/CookedFood';
+
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/donor">
+          <DonorHome />
+        </Route>
+        <Route exact path="/donor/all-orders">
+          <AllOrders />
+        </Route>
+        <Route exact path="/donor/order-details">
+          <OrderDetails />
+        </Route>
+        <Route exact path="/donor/my-order-details">
+          <MyOrderDetails />
         </Route>
         <Route exact path="/donor/choose">
           <DonorChoose />
@@ -33,6 +53,9 @@ function App() {
         </Route>
         <Route exact path="/donor/food">
           <FoodDetails />
+        </Route>
+        <Route exact path="/donor/food/cooked">
+          <CookedFood />
         </Route>
         <Route exact path="/donor/file">
           <DonorFile />
@@ -46,8 +69,14 @@ function App() {
         <Route exact path="/donor/finish">
           <DonorFinish />
         </Route>
+        <Route exact path="/AssignmentToDonation">
+          <AssignmentToDonation />
+        </Route>
+        <Route exact path="/AdminManagement">
+          <AdminManagment />
+        </Route>
       
-        <Route path="/foodTransfer"> <FoodTransfer/> 
+        <Route path="/FoodTransfer"> <FoodTransfer/> 
         </Route>
         <Route path="/HelperList"> <HelperList/> 
         </Route>

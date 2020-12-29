@@ -15,13 +15,24 @@ import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { FcHome } from "react-icons/fc";
 
 const useStyles = makeStyles(theme => ({
-
+  form: {
+    background: "#C0EDF2",
+    color: "#222222",
+    position: "relative",
+    borderRadius: 28,
+    height: 36,
+    border: "solid 4px white",
+    padding: "0 30px",
+    fontFamily: "'Varela Round', sans-serif",
+    fontSize: 20,
+    whiteSpace: "nowrap",
+    margin: theme.spacing(1),
+  },
     p: {
     textAlign:"right",
-    margin:20,
+    margin:50,
    
     },
     paper: {
@@ -133,9 +144,8 @@ export default function FoodDetails() {
             </p>
             <Form  noValidate autoComplete="off">
         <Form.Group controlId="formKashrut">
-          {/* <Form.Control type="text" placeholder="כשרות" className={classes.form} value={kashrut}
-          onChange={selectKashrut}/> */}
-        <Form.Control size="sm" as="select">
+        <Form.Control size="sm" as="select"  value={kashrut}
+          onChange={selectKashrut} className={classes.form}>
     <option value={"rabanut"}>רבנות</option>
     <option value={"mehadrin"}>מהדרין</option>
     <option value={"badatz"}>בד"ץ</option>
@@ -176,7 +186,8 @@ export default function FoodDetails() {
             />
             <br/>
             <Box  className={classes.countinueButton}>
-            <Button variant="contained"  onClick={submitFood} >המשך</Button>
+            <Button variant="outlined"
+          color="primary" onClick={submitFood} >המשך</Button>
             <Button text-align="center" href="">חזור</Button>
             </Box>
 </div>
