@@ -24,7 +24,6 @@ import AdminManagment from './components/AdminManagement';
 import AssignmentToDonation from './components/AssignmentToDonation';
 import OrderDetails from './components/OrderDetails';
 import MyOrderDetails from './components/MyOrderDetails';
-import CookedFood from './components/CookedFood';
 
 function App() {
   return (
