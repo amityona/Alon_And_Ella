@@ -20,8 +20,10 @@ import LastGroceries from './components/LastGroceries'
 import ClientHome from './components/ClientHome' 
 import DonorHome from './components/DonorHome';
 import AllOrders from './components/AllOrders';
-import AdminManagment from './components/AdminManagement';
-import AssignmentToDonation from './components/AssignmentToDonation';
+import AdminManagment from './components/Admin/AdminManagement';
+import OrderCompleted from './components/Admin/OrderCompleted';
+import OrderInProgress from './components/Admin/OrderInProgress';
+import OrderToConfirmation from './components/Admin/OrderToConfirmation';
 import OrderDetails from './components/OrderDetails';
 import MyOrderDetails from './components/MyOrderDetails';
 
@@ -68,13 +70,18 @@ function App() {
         <Route exact path="/donor/finish">
           <DonorFinish />
         </Route>
-        <Route exact path="/AssignmentToDonation">
-          <AssignmentToDonation />
-        </Route>
-        <Route exact path="/AdminManagement">
+        <Route exact path="Admin/AdminManagement">
           <AdminManagment />
         </Route>
-      
+        <Route exact path="Admin/OrderCompleted">
+          <OrderCompleted />
+        </Route>
+        <Route exact path="Admin/OrderInProgress">
+          <OrderInProgress />
+        </Route>
+        <Route exact path="Admin/OrderToConfirmation">
+          <OrderToConfirmation />
+        </Route>
         <Route path="/FoodTransfer"> <FoodTransfer/> 
         </Route>
         <Route path="/HelperList"> <HelperList/> 
