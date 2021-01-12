@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton'
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import { grey } from '@material-ui/core/colors';
-import Button from '@material-ui/core/Button';
+import { BiDonateHeart } from "react-icons/bi"
+import Button from "./UI/Button.js";
+import Form from "react-bootstrap/Form";
+import { useHistory } from "react-router-dom";
+
 const defaultProps = {
     bgcolor: 'background.paper',
     borderColor: 'text.primary',
@@ -12,7 +13,7 @@ const defaultProps = {
     border: 1,
     style: { width: '8rem', height: '8rem' },
   };
-  const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
 
     root: {
         '& > *': {
@@ -49,27 +50,72 @@ const defaultProps = {
             margin: theme.spacing(1),
           },
       },
+      header: {
+        textAlign: "right",
+        padding: 15,
+        fontSize: 20,
+        fontWeight: 700,
+      },
+      form: {
+        background: "#C0EDF2",
+        color: "#222222",
+        position: "relative",
+        borderRadius: 18,
+        height: 200,
+        border: "solid 6px white",
+        padding: "0 15px",
+        fontFamily: "'Varela Round', sans-serif",
+        fontSize: 15,
+        whiteSpace: "nowrap",
+        margin: theme.spacing(2),
+        
+      },
+      countinueButton: {
+        margin:20,
+        paddingTop:20,
+        textAlign: "left",
+      },
+      button: {
+          height:30,
+          fontSize:13,
+          width:25,
+      }
 
 }))
 
 
 export default function ClientFinish() {
-    
+    const [feedback, setFeedback] = useState('')
     const classes = useStyles();
+    const history = useHistory();
+
+    function submit() {
+        console.log([{ feedback: feedback}]);
+        history.push("/donor/all-orders");
+      }
+
         return (
             <div>
-                       <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
-                       <IconButton><PlayArrowIcon style={{ color: grey[900], fontSize: 15  }}></PlayArrowIcon></IconButton>
-            </Box>
-            <Box borderRadius="borderRadius" {...defaultProps}>
+                        <Box className={classes.header} p={1} bgcolor="#C0EDF2" margin="0">
+        סיום
+        <BiDonateHeart/>
+      </Box>
             <p className={classes.p}>
-            תודה, שמרנו את הבקשה שלך.
-            ניצור איתך קשר בהמשך.
+            תודה, שמרנו את הבקשה שלך. ניצור איתך קשר בהמשך.
             </p>
-            <div style={{textAlign:"center", margin:20}}>
-            <Button variant="contained" >המשך</Button>
-            </div>
-            </Box>
+         
+       
+
+            <Box  className={classes.countinueButton}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={submit} 
+          className={classes.button}
+        >
+         סיימתי
+        </Button>
+      </Box>
             </div>
         )
 }
