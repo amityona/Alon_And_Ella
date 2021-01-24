@@ -103,7 +103,7 @@ function App() {
         <Route path="/LastGroceries"> <LastGroceries/> 
         </Route>
 
-        <Route path="/donor/ClientHome">
+        <Route path="/ClientHome">
           <ClientHome />
         </Route>
 

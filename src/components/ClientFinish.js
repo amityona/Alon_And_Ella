@@ -91,8 +91,14 @@ export default function ClientFinish() {
 
     function submit() {
         console.log([{ feedback: feedback}]);
-        history.push("/donor/all-orders");
-      }
+        history.push("/LastGroceries");
+    }
+    function handleClick() {
+      history.push("/");
+    }
+    function handleClick2() {
+      history.push("/Groceries");
+    }
 
         return (
             <div>
