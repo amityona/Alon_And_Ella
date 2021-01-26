@@ -16,6 +16,8 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from "@material-ui/core/TextField";
+import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 const defaultProps = {
     bgcolor: 'background.paper',
     borderColor: 'text.primary',
@@ -122,13 +124,13 @@ export default function FoodType() {
             <div className={classes.paper}>
 <Paper elevation={3}>
     <IconButton> 
-<StopIcon onClick={handleClick2 } style={{ color: grey[900], fontSize: 40 }}></StopIcon>
+<AddShoppingCartIcon onClick={handleClick2 } style={{ color: grey[900], fontSize: 40 }}></AddShoppingCartIcon>
 </IconButton>
 <br/>
 מצרכים
     </Paper>
     <Paper elevation={3}>      <IconButton > 
-<FiberManualRecordIcon onClick={handleClick } style={{ color: grey[900], fontSize: 40  }}></FiberManualRecordIcon>
+<FreeBreakfastIcon onClick={handleClick } style={{ color: grey[900], fontSize: 40  }}></FreeBreakfastIcon>
 </IconButton>
 <br/>
 מזון מבושל</Paper>
