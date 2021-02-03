@@ -31,7 +31,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Route exact path="/">
+        <Route exact path="/client">
           <Home />
         </Route>
         <Route exact path="/donor">
@@ -103,7 +103,7 @@ function App() {
         <Route path="/LastGroceries"> <LastGroceries/> 
         </Route>
 
-        <Route path="/donor/ClientHome">
+        <Route path="/ClientHome">
           <ClientHome />
         </Route>
 

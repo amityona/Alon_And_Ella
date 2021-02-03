@@ -91,7 +91,7 @@ export default function DonorFinish() {
 
     function submit() {
         console.log([{ feedback: feedback}]);
-        history.push("/donor/all-orders");
+        history.push("/");
       }
 
         return (

@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton'
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import Paper from '@material-ui/core/Paper';
-import { grey } from '@material-ui/core/colors';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import StopIcon from '@material-ui/icons/Stop';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import TextField from "@material-ui/core/TextField";
+import { BiDonateHeart } from "react-icons/bi"
+import Button from "./UI/Button.js";
+import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
-
+import TextField from "@material-ui/core/TextField";
+const defaultProps = {
+    bgcolor: 'background.paper',
+    borderColor: 'text.primary',
+    m: 5,
+    border: 1,
+    style: { width: '8rem', height: '8rem' },
+  };
 const useStyles = makeStyles(theme => ({
+
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: 150,
+            height:48,
+        },
+
+    },
 
     p: {
     textAlign:"right",
@@ -43,36 +50,87 @@ const useStyles = makeStyles(theme => ({
             margin: theme.spacing(1),
           },
       },
+      header: {
+        textAlign: "right",
+        padding: 15,
+        fontSize: 20,
+        fontWeight: 700,
+      },
+      form: {
+        background: "#C0EDF2",
+        color: "#222222",
+        position: "relative",
+        borderRadius: 18,
+        height: 200,
+        border: "solid 6px white",
+        padding: "0 15px",
+        fontFamily: "'Varela Round', sans-serif",
+        fontSize: 15,
+        whiteSpace: "nowrap",
+        margin: theme.spacing(2),
+        
+      },
+      countinueButton: {
+        margin:20,
+        paddingTop:20,
+        textAlign: "left",
+      },
+      button: {
+          height:30,
+          fontSize:13,
+          width:25,
+      }
 
 }))
 
 
-export default function Groceries() {
-  const history = useHistory();
+export default function ClientFinish() {
+    const [feedback, setFeedback] = useState('')
+    const classes = useStyles();
+    const history = useHistory();
+
+    function submit() {
+        console.log([{ feedback: feedback}]);
+        history.push("/LastGroceries");
+    }
     function handleClick() {
-      history.push("/FoodType");
+      history.push("/CookedFood");
     }
     function handleClick2() {
-      history.push("/LastGroceries");
+      history.push("/FoodType");
     }
-  
-    const classes = useStyles();
+
         return (
             <div>
-                         <Box p={1} bgcolor="grey.300" margin="0" textAlign="right">
-                   מצרכים<IconButton><PlayArrowIcon onClick={handleClick } style={{ color: grey[900], fontSize: 15  }}></PlayArrowIcon></IconButton>
-            </Box>
-      <p className={classes.p}>
-            אילו מצרכים תרצו?
+                        <Box className={classes.header} p={1} bgcolor="#C0EDF2" margin="0">
+      מצרכים
+        <BiDonateHeart/>
+      </Box>
+            <p className={classes.p}>
+          אילו מצרכים תרצו?
             </p>
-            <TextField id="standard-size-small"  size="small" />
-            <br/>
-            <div style={{textAlign:"center", margin:20}}>
-            <Button onClick={handleClick2 }  nvariant="contained" >הזמן</Button>
-            <Button onClick={handleClick }  text-align="center" href="">חזור</Button>
-            </div>
+            <TextField id="standard-size-small"  size="big" label="Filled" variant="filled" />
+         
+       
 
+            <Box  className={classes.countinueButton}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={submit} 
+          className={classes.button}
+        >
+         המשך
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleClick2} 
+          className={classes.button}
+        >
+         חזור
+        </Button>
+      </Box>
             </div>
-
         )
 }
