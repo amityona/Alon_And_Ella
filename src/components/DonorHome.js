@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { BiDonateHeart } from "react-icons/bi"
-import firebase from './firebase'
+import firebase from '../firebase'
 
 const useStyles = makeStyles((theme) => ({
   form: {

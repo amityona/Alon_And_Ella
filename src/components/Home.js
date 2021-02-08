@@ -11,6 +11,7 @@ import firebase from "../firebase";
 import "firebase/firestore";
 import SimpleModal from "./Modal";
 import handleOpen from './Modal';
+import UtilsObj from "./Utils";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -71,13 +72,14 @@ export default function Home() {
     e.preventDefault();
     console.log([{ name: name, phone: phone }]);
 
+    UtilsObj.PrintSender();
     if (name && phone) {
       try {
-        const res = await checkUserDetails(phone);
+        const res = await checkUserDetails(name, phone);
         if (res === false) {
-          console.log("Did not fined user details. created new. waiting approval");
-          //  alert("Did not fined user details. created new. waiting approval");
-          setTextMsg('Did not fined user details. created new. waiting approval');
+          console.log("Did not find user details.");
+          //  alert("Did not find user details. created new. waiting approval");
+          setTextMsg('Did not find user details.');
           handleOpen();
         }
       } catch (error) { }
@@ -86,77 +88,69 @@ export default function Home() {
     }
   }
 
-  async function checkUserDetails(phone) {
-    if (phone) {
+  async function checkUserDetails(name, phone) {
+    if (name && phone) {
+      const foundUser = await UtilsObj.ValidUserDetails(name, phone); //todo understand why this always returns undefined  ◀⬅⬅⬅⬅⬅
       try {
         //gets user from db
-        const foundUser = await db.collection("User").where("phoneNumber", "==", phone).get();
+        //const foundUser = await db.collection("User").where("phoneNumber", "==", phone).get();
         const currentUrl = match.url;
 
-        if (foundUser.empty) { // no user found, create a new one 
-          if (currentUrl === '/') {
-            console.log('No matching documents');
-            await createUser('manager', false);
-            return false;
-          }
-        }
-
+        console.log(`   got User from UtilsObj\nDetails: `, foundUser);
         // user found. checking his details 
-        foundUser.forEach(doc => {
-          console.log(`User No.: ${doc.id},\nDetails: `, doc.data());
-          const user = doc.data();
-          if (user) {
-            if (currentUrl === '/' && user.role === 'manager') { // checks if he is a manager
-              //alert(`User ${user.name} is defined as a Manager. checking if approved`);
-              setTextMsg(`User ${user.name} is defined as a Manager. checking if approved`);
-              handleOpen();
-            } else {
-              setTextMsg(`User ${user.name} is not defined as a Manager`);
-              handleOpen();
-              return;
-            }
-
-
-            if (user.role === 'manager' && user.approved === false) { // checks if he is approved
-              //alert(`User ${user.name} is not approved yet`);
-              setTextMsg(`User ${user.name} is a Manager but not approved yet`);
-              handleOpen();
-
-              return;
-            }
-            // user is a manager and approved
-            else {
-              //alert(`Welcome ${user.name}`) 
-              setTextMsg(`Welcome ${user.name}`);
-              handleOpen();
-              let hold = setInterval(() => {
-                submitForm();
-                clearInterval(hold);
-              }, 3000);
-
-
-            }
-          } else if (!user) {
-            alert(`User data: ${user} is missing`)
+        if (foundUser) {
+          if (currentUrl === '/' && foundUser.role === 'manager') { // checks if he is a manager
+            setTextMsg(`User ${foundUser.name} is defined as a Manager. checking if approved`);
+            handleOpen();
+          } else {
+            setTextMsg(`User ${foundUser.name} is not defined as a Manager`);
+            handleOpen();
+            return;
           }
-        });
 
-      } catch (error) { }
+
+          if (foundUser.role === 'manager' && foundUser.approved === false) { // checks if he is approved
+            setTextMsg(`User ${foundUser.name} is a Manager but not approved yet`);
+            handleOpen();
+
+            return;
+          }
+          // user is a manager and approved
+          else {
+            setTextMsg(`Welcome ${foundUser.name}`);
+            handleOpen();
+            let hold = setInterval(() => {
+              submitForm();
+              clearInterval(hold);
+            }, 3000);
+
+
+          }
+          // todo put this back on when I'm done
+        // } else if (!foundUser) {
+        //   alert(`User data: ${foundUser} is missing`)
+        //   return false;
+        }
+      } catch (error) {return false}
     } else {
       alert("יש למלא את כל הפרטים");
+      return false;
+
     }
   }
 
 
   //* creates user object
-  async function createUser(role, approved) {
-    db.collection("User").add({
-      name: name,
-      phoneNumber: phone,
-      role,
-      approved,
-    });
-  }
+  // async function createUser(role, approved) {
+  //   db.collection("User").add({
+  //     name: name,
+  //     phoneNumber: phone,
+  //     role,
+  //     approved,
+  //   });
+  //}
+/** */
+
   //* passes to next page
   function submitForm() {
     history.push("/FoodType");
