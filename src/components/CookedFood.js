@@ -92,12 +92,16 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-export default function ClientFinish() {
+export default function CookedFood() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
     const [feedback, setFeedback] = useState('')
     const classes = useStyles();
     const history = useHistory();
-
-    function submit() {
+    const [kosher, setKosher] = useState("");
+    const [numberOfPeople, setNumberOfPeople] = useState("");
+    const [addInformation, setAddInformation] = useState("");
+    function submitForm() {
         console.log([{ feedback: feedback}]);
         history.push("/ClientFinish");
     }
@@ -106,6 +110,14 @@ export default function ClientFinish() {
     }
     function handleClick2() {
       history.push("/FoodType");
+    }
+    function submit() {
+      console.log([{ name: name, phone: phone }]);
+      if (numberOfPeople && addInformation) {
+        return submitForm();
+      } else {
+        alert("יש למלא את כל הפרטים");
+      }
     }
 
         return (
@@ -118,23 +130,34 @@ export default function ClientFinish() {
         אנא מלאו את הפרטים הבאים:
             </p>
             <FormControl component="fieldset">
-  <FormLabel component="legend">כשרות</FormLabel>
+      <FormLabel component="legend">כשרות</FormLabel>
   <RadioGroup aria-label="כשרות" name="כשרות" >
-    <FormControlLabel value="כשר" control={<Radio />} label="כשר" />
-    <FormControlLabel value="לא כשר" control={<Radio />} label="לא כשר" />
+    <FormControlLabel value="kosher" control={<Radio />} label="כשר" onChange={(e) => setKosher(e.target.value)} />
+    <FormControlLabel value="kosher" control={<Radio />} label="לא כשר" onChange={(e) => setKosher(e.target.value)} />
     
     
   </RadioGroup>
 </FormControl>
 <InputLabel id="label">מספר סועדים</InputLabel>
-<Select labelId="label" id="select" value="20">
-  <MenuItem value="10">1-3</MenuItem>
-  <MenuItem value="20">4 ומעלה</MenuItem>
+<Select labelId="label" id="select" value="name">
+  <MenuItem onChange={(e) => setNumberOfPeople(e.target.value)} value="numberOfPeople">1-3</MenuItem>
+  <MenuItem onChange={(e) => setNumberOfPeople(e.target.value)} value="numberOfPeople">4 ומעלה</MenuItem>
 </Select>
             <p className={classes.p}>
       מה עוד חשוב שנדע?
             </p>
-            <TextField id="standard-size-small"  size="big" label="Filled" variant="filled" />
+            <Form  noValidate autoComplete="off">
+
+        <Form.Group controlId="formPhone">
+          <Form.Control
+            type="phone"
+            placeholder=" אלרגיים למשהו?"
+            className={classes.form}
+            value={addInformation}
+            onChange={(e) => setAddInformation(e.target.value)}
+          />
+        </Form.Group>
+      </Form>
          
        
 

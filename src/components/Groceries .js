@@ -84,17 +84,33 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-export default function ClientFinish() {
+export default function Groceries() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
     const [feedback, setFeedback] = useState('')
     const classes = useStyles();
     const history = useHistory();
+    const [grocery, setGrocery] = useState("");
 
-    function submit() {
+    function submitForm() {
         console.log([{ feedback: feedback}]);
         history.push("/LastGroceries");
     }
     function handleClick() {
-      history.push("/CookedFood");
+      console.log([{ name: name, grocery: grocery }]);
+    if (grocery ) {
+      return submit();
+    } else {
+      alert("יש למלא את כל הפרטים");
+    }
+    }
+    function submit() {
+      console.log([{ name: name, grocery: grocery }]);
+      if (grocery) {
+        return submitForm();
+      } else {
+        alert("יש למלא את כל הפרטים");
+      }
     }
     function handleClick2() {
       history.push("/FoodType");
@@ -109,9 +125,21 @@ export default function ClientFinish() {
             <p className={classes.p}>
           אילו מצרכים תרצו?
             </p>
-            <TextField id="standard-size-small"  size="big" label="Filled" variant="filled" />
+          
          
        
+      <Form  noValidate autoComplete="off">
+
+        <Form.Group controlId="formPhone">
+          <Form.Control
+            type="phone"
+            placeholder="...למשל אורז, פסטה "
+            className={classes.form}
+            value={grocery}
+            onChange={(e) => setGrocery(e.target.value)}
+          />
+        </Form.Group>
+      </Form>
 
             <Box  className={classes.countinueButton}>
         <Button

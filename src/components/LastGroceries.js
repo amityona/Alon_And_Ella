@@ -91,6 +91,8 @@ const useStyles = makeStyles(theme => ({
 
 }))
 export default function LastGroceries() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
     const [feedback, setFeedback] = useState('')
     const classes = useStyles();
     const history = useHistory();
@@ -101,9 +103,17 @@ export default function LastGroceries() {
         history.push("/Groceries");
       }
 
-    function submit() {
+    function submitForm() {
         console.log([{ feedback: feedback}]);
         history.push("/Groceries");
+      }
+      function submit() {
+        console.log([{ name: name, phone: phone }]);
+        if (name && phone) {
+          return submitForm();
+        } else {
+          alert("יש למלא את כל הפרטים");
+        }
       }
 
         return (
@@ -118,7 +128,21 @@ export default function LastGroceries() {
             <p className={classes.p}>
     הנה הההזמנה הקודמת שלכם:
             </p>
-            <TextField id="standard-size-small"  size="big" label="Filled" variant="filled" />
+            
+      <Form  noValidate autoComplete="off">
+       
+
+        <Form.Group controlId="formPhone">
+          <Form.Control
+            type="phone"
+            placeholder="הזמנה קודמת"
+            className={classes.form}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </Form.Group>
+      </Form>
+            
             <Box  className={classes.countinueButton}>
         <Button
           variant="outlined"

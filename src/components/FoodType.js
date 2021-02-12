@@ -97,6 +97,8 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function FoodType() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
     const [feedback, setFeedback] = useState('')
     const classes = useStyles();
     const history = useHistory();
@@ -111,6 +113,7 @@ export default function FoodType() {
         console.log([{ feedback: feedback}]);
         history.push("/");
       }
+   
 
         return (
             <div>
