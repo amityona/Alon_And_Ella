@@ -5,30 +5,30 @@ import "firebase/firestore";
 
 //export function Utils() {
 
-    //fields
-    //  const [name, setName] = useState("");
-    //  const [phone, setPhone] = useState("");
-    // const history = useHistory();
-    // const location = useLocation();
-    // const [message, SetMessage] = useState("");
-    //const db = firebase.firestore();
-    // const match = useRouteMatch();
+//fields
+//  const [name, setName] = useState("");
+//  const [phone, setPhone] = useState("");
+// const history = useHistory();
+// const location = useLocation();
+// const [message, SetMessage] = useState("");
+//const db = firebase.firestore();
+// const match = useRouteMatch();
 
-    //properties
-    //methods
-    //#region  copied code from Home.js 
+//properties
+//methods
+//#region  copied code from Home.js 
 
 
-    //* creates user object
-    /*   async function createUser(role, approved) {
-           db.collection("User").add({
-               name: name,
-               phoneNumber: phone,
-               role,
-               approved,
-           });
-       }*/
-    //#endregion
+//* creates user object
+/*   async function createUser(role, approved) {
+       db.collection("User").add({
+           name: name,
+           phoneNumber: phone,
+           role,
+           approved,
+       });
+   }*/
+//#endregion
 //}
 
 const UtilsObj = {
@@ -43,8 +43,8 @@ const UtilsObj = {
     },
     ValidUserDetails: async function (name, phone) {
         //fields
-        
-        if (phone && name ) {
+
+        if (phone && name) {
             try {
                 //gets user from db
                 const foundUserPhone = await this.db.collection("User").where("phoneNumber", "==", phone).get();
@@ -55,22 +55,22 @@ const UtilsObj = {
                 if (foundUserPhone.empty && foundUserName.empty) { // no user found, create a new one 
                     if (window.location.pathname === '/') {
                         console.log('No matching manager documents');
-                        await this.createUser(name, phone, this.roles.manager, false);
-                        //return;
+
+                        return await this.createUser(name, phone, this.roles.manager, false);
                         // return false;
                     } else if (window.location.pathname === '/client-home') {
                         console.log('No matching client documents');
-                        await this.createUser(name, phone, this.roles.client, false);
-                        //return ;
+                        return await this.createUser(name, phone, this.roles.client, false);
+                        // ;
                         // return false;
                     } else if (window.location.pathname === '/donor-home') {
                         console.log('No matching donor documents');
-                        await this.createUser(name, phone, this.roles.donor, false);
-                        //return ;
+                        return await this.createUser(name, phone, this.roles.donor, false);
+                        // ;
                         // return false;
                     }
                 }
-                
+
                 // user found by phone. verifying his name 
                 if (foundUserPhone) {
                     foundUserPhone.forEach(doc => {
@@ -81,10 +81,24 @@ const UtilsObj = {
                             if (user.name === name && user.phoneNumber === phone) {
                                 //user verified, returning his details
                                 console.log(`   Found and returned user ${user.name}`, user, `\n    @ if(foundUserPhone) -> ValidUserDetails -> UtilsObj -> Utils.js`);
-                                return user;
-                            }// else return /*false*/;
+                                //return user;
+                                return new Promise((res, rej) => {
+                                    res = (returnedUser) => {
+                                        console.log(`   Created the user object ${user.name}`, user, `\n    @ new Promise -> if(foundUserPhone) -> ValidUserDetails -> UtilsObj -> Utils.js`);
+                                        returnedUser = {
+                                            name: user.name,
+                                            phoneNumber: user.phoneNumber,
+                                            role: user.role,
+                                            approved: user.approved
+                                        };
+                                        //res(returnedUser);
 
-                           //#region 
+                                        return returnedUser;
+                                    }
+                                    res(user);
+                                }
+                            )// else return /*false*/};
+                        }  //#region 
                             /**
                              * if (user.role === 'manager' && user.approved === false) { // checks if he is approved
                                     //alert(`User ${user.name} is not approved yet`);
@@ -113,12 +127,12 @@ const UtilsObj = {
                         } else if (!user) {
                             alert(`User data: ${user} is missing`)
                             // return false;
-                           // return ;
+                            // return ;
                         }
                     });
-                }else{
+                } else {
                     alert('ERROR-User name was found but did not match phone');
-                   // return ;
+                    // return ;
                     // return false;
                 }
 
@@ -134,12 +148,14 @@ const UtilsObj = {
     //* creates user object
     createUser: async function (name, phone, role, approved) {
         console.log(`   got  user details`, { name, phone, role, approved }, `inside createUser -> UtilsObj -> Utils.js`);
-        this.db.collection("User").add({
+        const user = {
             name,
             phoneNumber: phone,
             role,
             approved,
-        });
+        }
+        this.db.collection("User").add(user);
+        return user;
     }
 }
 export default UtilsObj;
