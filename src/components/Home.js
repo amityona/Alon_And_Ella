@@ -58,7 +58,8 @@ export default function Home() {
   const { signUp } = useAuth();
   const [open, setOpen] = useState(false);
   const db = firebase.firestore();
-  const [message, SetMessage] = useState("")
+  const [message, SetMessage] = useState("");
+  const utils = new UtilsObj();
 
 
   console.log(match);
@@ -72,7 +73,7 @@ export default function Home() {
     e.preventDefault();
     console.log([{ name: name, phone: phone }]);
 
-    UtilsObj.PrintSender();
+    utils.PrintSender();
     if (name && phone) {
       try {
         const res = await checkUserDetails(name, phone);
@@ -82,7 +83,7 @@ export default function Home() {
           setTextMsg('Did not find user details.');
           handleOpen();
         }
-      } catch (error) { }
+      } catch (error) { console.log(error);}
     } else {
       alert("יש למלא את כל הפרטים");
     }
@@ -94,10 +95,14 @@ export default function Home() {
         //gets user from db
         //const foundUser = await db.collection("User").where("phoneNumber", "==", phone).get();
         const currentUrl = match.url;
-
-        const /*user*/foundUser = await UtilsObj.ValidUserDetails(name, phone).then(retUser => {
-          console.log(`   got User from UtilsObj\nDetails: `, retUser);
-        });/*; //todo understand why this always returns undefined  ◀⬅⬅⬅⬅⬅
+        await utils.ValidUserDetails(name, phone);
+        let /*user*/foundUser = utils.getUserHolder();
+        //let /*user*/retUser = await foundUser;
+        
+       //foundUser.then(retUser => {
+          console.log(`   got User from UtilsObj\nDetails: `,/* retUser,*/`\n`, foundUser);
+        //});
+        /*; //todo understand why this always returns undefined  ◀⬅⬅⬅⬅⬅
         let foundUser = await user.then(retUser => {
           console.log(`   got User from UtilsObj\nDetails: `, retUser);
         });
@@ -138,8 +143,12 @@ export default function Home() {
           // } else if (!foundUser) {
           //   alert(`User data: ${foundUser} is missing`)
           //   return false;
-        }
-      } catch (error) { return false }
+          //!<------------
+          }
+        //})
+      } catch (error) { 
+        console.log('   [CAUGHT ERROR] ', error.message); 
+      return false }
     } else {
       alert("יש למלא את כל הפרטים");
       return false;
