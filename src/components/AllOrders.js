@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import { useHistory } from "react-router-dom";
@@ -48,6 +49,8 @@ const useStyles = makeStyles(theme => ({
 export default function AllOrders() {
   const classes = useStyles();
   const history = useHistory();
+  const location = useLocation()
+  
   const myOrders = [
       {
           id:0,
@@ -70,6 +73,11 @@ export default function AllOrders() {
   const handleClick2 = () => {
     setOpen2(!open2);
   };
+
+  useEffect(() => {
+    console.log(location.pathname)
+    console.log(location.state)
+  }, [location])
 
   function myOrderClick() {
     history.push({

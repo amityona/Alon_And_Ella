@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import { RadioGroup,FormLabel, Radio, FormControlLabel, Menu, MenuItem, Select, InputLabel } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
+import firebase from "../firebase";
 
 const defaultProps = {
     bgcolor: 'background.paper',
@@ -28,6 +29,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     p: {
+      color: "#222222",
     textAlign:"right",
     margin:20,
    
@@ -44,6 +46,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     formControl: {
+      color: "#222222",
         margin: theme.spacing(1),
         minWidth: 100,
 
@@ -60,6 +63,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 700,
       },
       formControl: {
+        color: "#222222",
         margin: theme.spacing(1),
         minWidth: 100,
 
@@ -93,6 +97,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function CookedFood() {
+    const[kashrut, setKashrut] = useState('')
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
     const [feedback, setFeedback] = useState('')
@@ -101,8 +106,26 @@ export default function CookedFood() {
     const [kosher, setKosher] = useState("");
     const [numberOfPeople, setNumberOfPeople] = useState("");
     const [addInformation, setAddInformation] = useState("");
+    const [type, setType] = useState("Cooked Food");
+    const [status, setStatus] = useState("Open");
+    const [approved, setApproved] = useState("Not Approved");
+
+
+    const db = firebase.firestore();
+    async function createRequests(grocery) {
+         db.collection("Requests").add({
+            name: name,
+             phoneNumber: phone,
+             status : status, 
+      //     role,
+            approved,
+             addInformation: addInformation,
+             type: type,
+         });
+      }
     function submitForm() {
         console.log([{ feedback: feedback}]);
+        createRequests();
         history.push("/ClientFinish");
     }
     function handleClick() {
@@ -111,6 +134,15 @@ export default function CookedFood() {
     function handleClick2() {
       history.push("/FoodType");
     }
+
+    function submitFoodType(i) {
+      setKosher(kosher[i])
+    }
+
+    const selectPeople = (event) => {
+
+      setNumberOfPeople(event.target.value)
+    };
     function submit() {
       console.log([{ name: name, phone: phone }]);
       if (numberOfPeople && addInformation) {
@@ -126,25 +158,36 @@ export default function CookedFood() {
       אוכל מבושל
         <BiDonateHeart/>
       </Box>
-            <p className={classes.p}>
-        אנא מלאו את הפרטים הבאים:
+      <p style={{margin:10, textAlign: "right"}}>
+                    אנא מלאו את הפרטים הבאים:
+            </p>
+            <p style={{margin:10, textAlign: "right"}}>
+              כשרות
             </p>
             <FormControl component="fieldset">
-      <FormLabel component="legend">כשרות</FormLabel>
-  <RadioGroup aria-label="כשרות" name="כשרות" >
-    <FormControlLabel value="kosher" control={<Radio />} label="כשר" onChange={(e) => setKosher(e.target.value)} />
-    <FormControlLabel value="kosher" control={<Radio />} label="לא כשר" onChange={(e) => setKosher(e.target.value)} />
-    
+      <FormLabel component="legend"></FormLabel>
+  <RadioGroup  >
+    <FormControlLabel value="kosher" control={<Radio />} label="כשר" onClick={submitFoodType.bind(this, 0)} />
+    <FormControlLabel value="notKosher" control={<Radio />} label="לא כשר"  onClick={submitFoodType.bind(this, 1)} />
+    <p style={{margin:10, textAlign: "right"}}>
+               מספר סועדים
+            </p>
+            <Form  noValidate autoComplete="off">
+        <Form.Group controlId="formKashrut">
+        <Form.Control size="sm" as="select"  value={numberOfPeople}
+          onChange={selectPeople} className={classes.form}>
+    <option value={"1-2"}>1-2</option>
+    <option value={"3-4"}>3-4</option>
+    <option value={"5+"}>5 ומעלה </option>
+  </Form.Control>
+  </Form.Group>
+</Form>
     
   </RadioGroup>
 </FormControl>
-<InputLabel id="label">מספר סועדים</InputLabel>
-<Select labelId="label" id="select" value="name">
-  <MenuItem onChange={(e) => setNumberOfPeople(e.target.value)} value="numberOfPeople">1-3</MenuItem>
-  <MenuItem onChange={(e) => setNumberOfPeople(e.target.value)} value="numberOfPeople">4 ומעלה</MenuItem>
-</Select>
-            <p className={classes.p}>
-      מה עוד חשוב שנדע?
+
+<p style={{margin:10, textAlign: "right"}}>
+              מה עוד חשוב שנדע?
             </p>
             <Form  noValidate autoComplete="off">
 

@@ -18,6 +18,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from "@material-ui/core/TextField";
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 const defaultProps = {
     bgcolor: 'background.paper',
     borderColor: 'text.primary',
@@ -102,6 +104,7 @@ export default function FoodType() {
     const [feedback, setFeedback] = useState('')
     const classes = useStyles();
     const history = useHistory();
+    
     function handleClick() {
       history.push("/CookedFood");
     }
@@ -127,13 +130,13 @@ export default function FoodType() {
             <div className={classes.paper}>
 <Paper elevation={3}>
     <IconButton> 
-<AddShoppingCartIcon onClick={handleClick2 } style={{ color: grey[900], fontSize: 40 }}></AddShoppingCartIcon>
+<ShoppingCartIcon onClick={handleClick2 } style={{ color: grey[900], fontSize: 40 }}></ShoppingCartIcon>
 </IconButton>
 <br/>
 מצרכים
     </Paper>
     <Paper elevation={3}>      <IconButton > 
-<FreeBreakfastIcon onClick={handleClick } style={{ color: grey[900], fontSize: 40  }}></FreeBreakfastIcon>
+<OutdoorGrillIcon onClick={handleClick } style={{ color: grey[900], fontSize: 40  }}></OutdoorGrillIcon>
 </IconButton>
 <br/>
 מזון מבושל</Paper>

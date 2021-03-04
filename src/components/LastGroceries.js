@@ -6,6 +6,7 @@ import Button from "./UI/Button.js";
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
+import firebase from "../firebase";
 
 const defaultProps = {
     bgcolor: 'background.paper',

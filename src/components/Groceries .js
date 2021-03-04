@@ -6,6 +6,9 @@ import Button from "./UI/Button.js";
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
+import app from "../firebase";
+import firebase from "../firebase";
+import "firebase/firestore";
 const defaultProps = {
     bgcolor: 'background.paper',
     borderColor: 'text.primary',
@@ -91,14 +94,34 @@ export default function Groceries() {
     const classes = useStyles();
     const history = useHistory();
     const [grocery, setGrocery] = useState("");
+    const [status, setStatus] = useState("Open");
+    const [type, setType] = useState("Groceries");
+    const [approved, setApproved] = useState("Not Approved");
 
-    function submitForm() {
+    const db = firebase.firestore();
+    async function createRequests(grocery) {
+         db.collection("Requests").add({
+            name: name,
+             phoneNumber: phone,
+             status : status, 
+      //     role,
+            approved,
+             grocery: grocery,
+             type: type,
+         });
+      }
+    
+
+     function submitForm() {
         console.log([{ feedback: feedback}]);
+        createRequests(grocery);
         history.push("/LastGroceries");
+       
     }
     function handleClick() {
       console.log([{ name: name, grocery: grocery }]);
     if (grocery ) {
+
       return submit();
     } else {
       alert("יש למלא את כל הפרטים");
