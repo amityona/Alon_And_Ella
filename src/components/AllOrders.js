@@ -12,6 +12,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import firebase from "../firebase";
+
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -49,8 +52,22 @@ const useStyles = makeStyles(theme => ({
 export default function AllOrders() {
   const classes = useStyles();
   const history = useHistory();
-  const location = useLocation()
-  
+  const location = useLocation();
+  const [requests,setRequests]=useState([]);
+
+
+  const fetchRequests=async()=>{
+    const response=firebase.firestore().collection('requests');
+    const data=await response.get();
+    data.docs.forEach(item=>{
+    setRequests([...requests,item.data()]);
+    })
+  }
+
+  console.log(requests);
+ 
+
+
   const myOrders = [
       {
           id:0,
@@ -63,7 +80,7 @@ export default function AllOrders() {
         date:"15.12.2020"
     }
   ]
-  const listMyOrders = myOrders.map((o)=> <Paper key={o.order}>{o.date} {o.order}</Paper>)
+  const listMyOrders = requests.map((o)=> <Paper key={o.id}>{o.list} {o.status}</Paper>)
   const [open, setOpen] = useState(true);
   const [open2, setOpen2] = useState(true);
 
@@ -75,8 +92,9 @@ export default function AllOrders() {
   };
 
   useEffect(() => {
-    console.log(location.pathname)
-    console.log(location.state)
+    console.log(location.pathname);
+    console.log(location.state);
+    fetchRequests();
   }, [location])
 
   function myOrderClick() {
@@ -90,8 +108,10 @@ export default function AllOrders() {
     history.push("/donor/order-details");
   }
 
-  return (
+  return (  
+
     <div>
+     
       <Box className={classes.header} p={1} bgcolor="#C0EDF2" margin="0">
         הזמנות פתוחות
         <BiDonateHeart />

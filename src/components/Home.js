@@ -58,7 +58,8 @@ export default function Home() {
   const { signUp } = useAuth();
   const [open, setOpen] = useState(false);
   const db = firebase.firestore();
-  const [message, SetMessage] = useState("")
+  const [message, SetMessage] = useState("");
+  const utils = new UtilsObj();
 
 
   console.log(match);
@@ -72,7 +73,7 @@ export default function Home() {
     e.preventDefault();
     console.log([{ name: name, phone: phone }]);
 
-    UtilsObj.PrintSender();
+    utils.PrintSender();
     if (name && phone) {
       try {
         const res = await checkUserDetails(name, phone);
@@ -82,7 +83,7 @@ export default function Home() {
           setTextMsg('Did not find user details.');
           handleOpen();
         }
-      } catch (error) { }
+      } catch (error) { console.log(error);}
     } else {
       alert("יש למלא את כל הפרטים");
     }
@@ -90,13 +91,25 @@ export default function Home() {
 
   async function checkUserDetails(name, phone) {
     if (name && phone) {
-      const foundUser = await UtilsObj.ValidUserDetails(name, phone); //todo understand why this always returns undefined  ◀⬅⬅⬅⬅⬅
       try {
         //gets user from db
         //const foundUser = await db.collection("User").where("phoneNumber", "==", phone).get();
         const currentUrl = match.url;
-
-        console.log(`   got User from UtilsObj\nDetails: `, foundUser);
+        await utils.ValidUserDetails(name, phone);
+        let /*user*/foundUser = utils.getUserHolder();
+        //let /*user*/retUser = await foundUser;
+        
+       //foundUser.then(retUser => {
+          console.log(`   got User from UtilsObj\nDetails: `,/* retUser,*/`\n`, foundUser);
+        //});
+        /*; //todo understand why this always returns undefined  ◀⬅⬅⬅⬅⬅
+        let foundUser = await user.then(retUser => {
+          console.log(`   got User from UtilsObj\nDetails: `, retUser);
+        });
+            
+        */
+          
+        //const ret = 
         // user found. checking his details 
         if (foundUser) {
           if (currentUrl === '/' && foundUser.role === 'manager') { // checks if he is a manager
@@ -105,7 +118,7 @@ export default function Home() {
           } else {
             setTextMsg(`User ${foundUser.name} is not defined as a Manager`);
             handleOpen();
-            return;
+            return true;
           }
 
 
@@ -113,7 +126,7 @@ export default function Home() {
             setTextMsg(`User ${foundUser.name} is a Manager but not approved yet`);
             handleOpen();
 
-            return;
+            return true;
           }
           // user is a manager and approved
           else {
@@ -127,11 +140,15 @@ export default function Home() {
 
           }
           // todo put this back on when I'm done
-        // } else if (!foundUser) {
-        //   alert(`User data: ${foundUser} is missing`)
-        //   return false;
-        }
-      } catch (error) {return false}
+          // } else if (!foundUser) {
+          //   alert(`User data: ${foundUser} is missing`)
+          //   return false;
+          //!<------------
+          }
+        //})
+      } catch (error) { 
+        console.log('   [CAUGHT ERROR] ', error.message); 
+      return false }
     } else {
       alert("יש למלא את כל הפרטים");
       return false;
@@ -149,7 +166,7 @@ export default function Home() {
   //     approved,
   //   });
   //}
-/** */
+  /** */
 
   //* passes to next page
   function submitForm() {
