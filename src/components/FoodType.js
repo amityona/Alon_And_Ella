@@ -151,7 +151,7 @@ export default function FoodType() {
           onClick={handleClick} 
           className={classes.button}
         >
-         המשך
+          המשך
         </Button>
         <Button
           variant="outlined"
